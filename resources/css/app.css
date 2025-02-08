@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/** content-backend -> section pertama */
+.app-content {
+  @apply flex-nowrap w-full bg-white drop-shadow-sm
+  p-4 mt-[-50px] flex items-center justify-center rounded-lg;
+}
+
+/** content-backend -> section pertama */
+.app-content-title {
+  @apply px-8 py-1 text-xl font-normal tracking-wide text-white bg-green-700 rounded-full drop-shadow-sm;
+}
+
+/** inputan login register app-auth-inputan */
+.app-auth-inputan {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm
+  rounded-2xl focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder:text-gray-500 placeholder:tracking-wider placeholder:ps-1 placeholder:font-serif tracking-wide;
+}
+
+/** button login register */
+.app-button-auth {
+  @apply block w-2/3 mx-auto text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
+  rounded-xl text-base tracking-wide px-5 py-2;
+}
+
+/** login register link */
+.app-auth-link {
+  @apply text-sm italic font-medium tracking-wide text-center;
+}
+
+/** login register link back to home */
+.app-auth-home {
+  @apply px-2 text-sm font-medium tracking-wide text-white bg-blue-600 rounded-md hover:bg-blue-700;
+}
+
+/** table index app-table-border */
+.app-table-border {
+  @apply bg-white border border-gray-200 shadow-sm rounded-3xl;
+}
+
+/** table index app-table-grid */
+.app-table-grid {
+  @apply gap-3 px-6 py-4 border-b border-gray-200 md:flex md:justify-between md:items-center;
+}
+
+/** table index app-table-footer */
+.app-table-footer {
+  @apply gap-3 px-6 py-5 border-t border-gray-200 md:flex lg:justify-center md:items-center;
+}
+
+/** border create show dan edit app-cse-border */
+.app-cse-border {
+  @apply w-full p-14 bg-white border border-gray-200
+  drop-shadow-sm rounded-3xl;
+}
+
+/** ini digunakan di component index table */
+.center {
+  @apply flex justify-center;
+}

@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers\Backend\Managemenu;
+
+use Illuminate\Http\Request;
+use App\Models\Managemenu\Menu;
+use App\Models\Managemenu\Submenu;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Managemenu\Submenu\SubmenuSr;
+use App\Http\Requests\Managemenu\Submenu\SubmenuUr;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+
+class SubmenusController extends Controller
+{
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+    $submenus = Submenu::search(request(['search', 'menu']))
+      ->select(['id', 'menu_id', 'ssm', 'icon', 'name', 'is_active', 'description', 'url'])
+      ->with(['menu'])
+      ->orderby('menu_id', 'asc')
+      ->paginate(25)
+      ->withQueryString();
+
+    return view('backend.managemenu.submenus.index', [
+      'title' => 'Semua data submenus',
+      'submenus' => $submenus
+    ]);
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create(Submenu $submenu)
+  {
+    $menus = Menu::select('id', 'name')
+      ->orderby('menu_id', 'asc')
+      ->get();
+
+    return view('backend.managemenu.submenus.create', [
+      'title' => 'Create data submenu',
+      'submenu' => $submenu,
+      'menus' => $menus
+    ]);
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(SubmenuSr $request)
+  {
+    $datastore = $request->validated();
+  }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(Submenu $submenu)
+  {
+    //
+  }
+
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Submenu $submenu)
+  {
+    //
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(SubmenuUr $request, Submenu $submenu)
+  {
+    //
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Submenu $submenu)
+  {
+    //
+  }
+
+  /**
+   * Generate resource slug otomatis.
+   */
+  public function slug(Request $request)
+  {
+    $slug = SlugService::createSlug(
+      Menu::class,
+      'slug',
+      $request->name
+    );
+
+    return response()->json(['slug' => $slug]);
+  }
+}

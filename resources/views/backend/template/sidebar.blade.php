@@ -25,7 +25,7 @@
                   :route="route($submenu->routename)"
                   :active="$submenu->active . '*'"
                   :sub-menu="$submenu->name"
-                  :image="$submenu->image"
+                  :image="asset($submenu->image)"
                 />
               </li>
             @endforeach

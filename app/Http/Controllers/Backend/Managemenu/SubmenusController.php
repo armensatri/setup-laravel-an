@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend\Managemenu;
 
+use App\Helpers\RandomUrl;
 use Illuminate\Http\Request;
 use App\Models\Managemenu\Menu;
 use App\Models\Managemenu\Submenu;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Managemenu\Submenu\SubmenuSr;
 use App\Http\Requests\Managemenu\Submenu\SubmenuUr;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -18,7 +20,7 @@ class SubmenusController extends Controller
   public function index()
   {
     $submenus = Submenu::search(request(['search', 'menu']))
-      ->select(['id', 'menu_id', 'ssm', 'name', 'route', 'active', 'routename', 'url'])
+      ->select(['id', 'menu_id', 'ssm', 'name', 'active', 'description', 'url'])
       ->with(['menu'])
       ->orderby('menu_id', 'asc')
       ->paginate(25)
@@ -52,6 +54,24 @@ class SubmenusController extends Controller
   public function store(SubmenuSr $request)
   {
     $datastore = $request->validated();
+
+    $datastore['url'] = $request->input('url')
+      ?: RandomUrl::GenerateUrl();
+
+    if ($request->hasFile('image')) {
+      $datastore['image'] = $request->file('image')->store(
+        '/managemenu/submenus'
+      );
+    }
+
+    Submenu::create($datastore);
+
+    Alert::success(
+      'success',
+      'Data submenu! berhasil di tambahkan.'
+    );
+
+    return redirect()->route('submenus.index');
   }
 
   /**

@@ -51,8 +51,8 @@ class Submenu extends Model
   public function active(): array
   {
     return $this->is_active
-      ? ['bg' => 'green-200', 'text' => 'green-800', 'active' => 'active']
-      : ['bg' => 'red-200', 'text' => 'red-800', 'active' => '!active'];
+      ? ['bg' => 'green-200', 'text' => 'green-800', 'status' => 'active']
+      : ['bg' => 'red-200', 'text' => 'red-800', 'status' => '!active'];
   }
 
   protected static function boot()

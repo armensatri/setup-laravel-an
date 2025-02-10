@@ -79,13 +79,13 @@
                           name="name"
                         />
                         <x-th
-                          name="route"
+                          name="url"
                         />
                         <x-th
                           name="active"
                         />
                         <x-th
-                          name="routename"
+                          name="description"
                         />
                         <x-th-action/>
                       </tr>
@@ -111,26 +111,15 @@
                           </td>
 
                           <td class="h-px whitespace-nowrap">
-                            <div class="center">
-                              <x-td-var
-                                :var="$submenu->menu->name"
-                              />
-                            </div>
+                            <x-td-var
+                              :var="$submenu->menu->name"
+                            />
                           </td>
 
                           <td class="h-px whitespace-nowrap">
                             <div class="center">
                               <x-td-var
                                 :var="$submenu->ssm"
-                              />
-                            </div>
-                          </td>
-
-                          <td class="size-px whitespace-nowrap">
-                            <div class="center">
-                              <x-td-image
-                                :asset="$submenu->image"
-                                asset-default="/image/default.png"
                               />
                             </div>
                           </td>
@@ -142,10 +131,16 @@
                           </td>
 
                           <td class="h-px whitespace-nowrap">
+                            <x-td-var
+                              :var="$submenu->url"
+                            />
+                          </td>
+
+                          <td class="h-px whitespace-nowrap">
                             <x-td-var-bg
                               :bg="$submenu->active()['bg']"
                               :text="$submenu->active()['text']"
-                              :var="$submenu->active()['active']"
+                              :var="$submenu->active()['status']"
                             />
                           </td>
 

@@ -19,7 +19,7 @@ class MenusController extends Controller
   public function index()
   {
     $menus = Menu::search(request(['search']))
-      ->select(['id', 'sm', 'name', 'url', 'description'])
+      ->select(['id', 'sm', 'name', 'description', 'url'])
       ->with(['submenus'])
       ->orderby('sm', 'asc')
       ->paginate(25)

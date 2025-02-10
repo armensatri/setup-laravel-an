@@ -87,7 +87,7 @@ class SubmenuSr extends FormRequest
       'image.image' => 'Submenu..image! file yang di upload bukan image',
       'image.max' => 'Submenu..image! ukuran image maksimal 2 mb',
 
-      'description.' => 'Submenu..description!',
+      'description.required' => 'Submenu..description! harus di isi',
     ];
   }
 }

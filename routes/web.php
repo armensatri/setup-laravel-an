@@ -106,6 +106,16 @@ Route::get('/account/profile/user', [
   ProfileController::class,
   'profile'
 ])->name('profile');
+Route::get('/account/edit-profile', [
+  ProfileController::class,
+  'edit-profile'
+])->name('edit.profile');
+Route::get('/account/change-password', [
+  ProfileController::class,
+  'changepassword'
+])->name('change.password');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
   Route::resources([

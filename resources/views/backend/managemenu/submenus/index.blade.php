@@ -76,16 +76,16 @@
                           name="ssm"
                         />
                         <x-th
-                          name="icon"
+                          name="name"
                         />
                         <x-th
-                          name="name"
+                          name="route"
                         />
                         <x-th
                           name="active"
                         />
                         <x-th
-                          name="description"
+                          name="routename"
                         />
                         <x-th-action/>
                       </tr>
@@ -127,10 +127,12 @@
                           </td>
 
                           <td class="size-px whitespace-nowrap">
-                            <x-td-image
-                              :asset="$submenu->image"
-                              asset-default="/image/default.png"
-                            />
+                            <div class="center">
+                              <x-td-image
+                                :asset="$submenu->image"
+                                asset-default="/image/default.png"
+                              />
+                            </div>
                           </td>
 
                           <td class="h-px whitespace-nowrap">

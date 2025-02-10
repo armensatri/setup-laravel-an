@@ -19,7 +19,6 @@ class SubmenuSeeder extends Seeder
         'route' => '/account/profile/user',
         'active' => '/account/profile/user*',
         'routename' => 'profile',
-        'icon' => '/image/profile.jpg',
         'description' => 'user profile'
       ]
     ];

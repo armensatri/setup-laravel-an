@@ -25,7 +25,7 @@
                   :route="route($submenu->routename)"
                   :active="$submenu->active . '*'"
                   :sub-menu="$submenu->name"
-                  :icon="asset($submenu->icon)"
+                  :image="$submenu->image"
                 />
               </li>
             @endforeach
@@ -39,26 +39,26 @@
               :route="route('users.index')"
               active="users*"
               sub-menu="users"
-              icon="/image/users.jpg"
+              image="/image/users.jpg"
             />
             <x-submenu
               :route="route('roles.index')"
               active="roles*"
               sub-menu="roles"
-              icon="/image/roles.jpg"
+              image="/image/roles.jpg"
             />
 
             <x-submenu
               :route="route('menus.index')"
               active="menus*"
               sub-menu="menus"
-              icon="/image/menu.jpg"
+              image="/image/menu.jpg"
             />
             <x-submenu
               :route="route('submenus.index')"
               active="submenus*"
               sub-menu="submenus"
-              icon="/image/submenu.jpg"
+              image="/image/submenu.jpg"
             />
           </li>
         </ul>

@@ -49,7 +49,7 @@ class SubmenuSr extends FormRequest
         'required'
       ],
 
-      'icon' => [
+      'image' => [
         'image',
         'max:2048'
       ],
@@ -63,31 +63,31 @@ class SubmenuSr extends FormRequest
   public function messages()
   {
     return [
-      'name.' => 'User..name!',
+      'menu_id.required' => 'Submenu..menu! harus di isi',
 
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
+      'ssm.required' => 'Submenu..ssm! harus di isi',
+      'ssm.numeric' => 'Submenu..ssm! harus angka',
 
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
+      'name.required' => 'Submenu..name! harus di isi',
+      'name.min' => 'Submenu..name! minimal 3 karakter',
+      'name.max' => 'Submenu..name! maksimal 50 karakter',
+      'name.unique' => 'Submenu..name! sudah terdaptar',
 
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
+      'slug.required' => 'Submenu..slug! harus di isi',
+      'slug.min' => 'Submenu..slug! minimal 3 karakter',
+      'slug.max' => 'Submenu..slug! maksimal 50 karakter',
+      'slug.unique' => 'Submenu..slug! sudah terdaptar',
 
-      'name.' => 'User..name!',
+      'route.required' => 'Submenu..route! harus di isi',
 
-      'name.' => 'User..name!',
+      'active.required' => 'Submenu..active! harus di isi',
 
-      'name.' => 'User..name!',
+      'routename.required' => 'Submenu..routename! harus di isi',
 
-      'name.' => 'User..name!',
-      'name.' => 'User..name!',
+      'image.image' => 'Submenu..image! file yang di upload bukan image',
+      'image.max' => 'Submenu..image! ukuran image maksimal 2 mb',
 
-      'name.' => 'User..name!',
+      'description.' => 'Submenu..description!',
     ];
   }
 }

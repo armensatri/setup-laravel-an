@@ -11,18 +11,18 @@ class Submenu extends Component
   public $route;
   public $active;
   public $subMenu;
-  public $icon;
+  public $image;
 
   public function __construct(
     $route,
     $active,
     $subMenu,
-    $icon,
+    $image,
   ) {
     $this->route = $route;
     $this->active = $active;
     $this->subMenu = $subMenu;
-    $this->icon = $icon;
+    $this->image = $image;
   }
 
   public function render(): View|Closure|string

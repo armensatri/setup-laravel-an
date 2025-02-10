@@ -22,7 +22,7 @@ return new class extends Migration
       $table->string('route');
       $table->string('active');
       $table->string('routename');
-      $table->string('icon')->nullable();
+      $table->string('image')->nullable();
       $table->boolean('is_active')->default(1);
       $table->text('description');
       $table->timestamps();

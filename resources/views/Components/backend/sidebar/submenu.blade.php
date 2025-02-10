@@ -2,7 +2,7 @@
   class="{{ Request::is($active) ? $active : '' }}
   flex items-center p-2 hover:bg-slate-100 hover:rounded-full">
 
-  <img src="{{ $icon }}"
+  <img src="{{ $image }}"
     alt="icon"
     class="w-[16px] h-[16px] ml-2"
   />

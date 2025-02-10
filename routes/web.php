@@ -2,10 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Home\HomeController;
-
-use App\Http\Controllers\Backend\Account\{
-  ProfileController,
-};
+use App\Http\Controllers\Backend\Account\AccountController;
 
 use App\Http\Controllers\Auth\{
   LoginController,
@@ -102,20 +99,13 @@ Route::group(['middleware' => 'auth'], function () {
 | ROUTE BACKEND
 |---------------------------------------------------------------*/
 
-Route::get('/account/profile/user', [
-  ProfileController::class,
-  'profile'
-])->name('profile');
-Route::get('/account/edit-profile', [
-  ProfileController::class,
-  'edit-profile'
-])->name('edit.profile');
-Route::get('/account/change-password', [
-  ProfileController::class,
-  'changepassword'
-])->name('change.password');
-
-
+Route::group(['middleware' => ['auth']], function () {
+  Route::controller(AccountController::class)->group(
+    function () {
+      //
+    }
+  );
+});
 
 Route::group(['middleware' => ['auth']], function () {
   Route::resources([

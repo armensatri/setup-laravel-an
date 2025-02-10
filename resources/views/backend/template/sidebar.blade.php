@@ -22,7 +22,7 @@
             @foreach ($menu->submenus as $submenu)
               <li class="px-2">
                 <x-submenu
-                  :route="route($submenu->routename)"
+                  :route="$submenu->routename"
                   :active="$submenu->active . '*'"
                   :sub-menu="$submenu->name"
                   :image="asset($submenu->image)"
@@ -30,37 +30,6 @@
               </li>
             @endforeach
           @endforeach
-
-          <x-menu
-            menu="manage"
-          />
-          <li class="px-2">
-            <x-submenu
-              :route="route('users.index')"
-              active="users*"
-              sub-menu="users"
-              image="/image/users.jpg"
-            />
-            <x-submenu
-              :route="route('roles.index')"
-              active="roles*"
-              sub-menu="roles"
-              image="/image/roles.jpg"
-            />
-
-            <x-submenu
-              :route="route('menus.index')"
-              active="menus*"
-              sub-menu="menus"
-              image="/image/menu.jpg"
-            />
-            <x-submenu
-              :route="route('submenus.index')"
-              active="submenus*"
-              sub-menu="submenus"
-              image="/image/submenu.jpg"
-            />
-          </li>
         </ul>
 
         <div class="px-5 mx-auto mt-8 mb-8">

@@ -84,9 +84,6 @@
                         <x-th
                           name="active"
                         />
-                        <x-th
-                          name="description"
-                        />
                         <x-th-action/>
                       </tr>
                     </thead>
@@ -140,13 +137,7 @@
                             <x-td-var-bg
                               :bg="$submenu->active()['bg']"
                               :text="$submenu->active()['text']"
-                              :var="$submenu->active()['status']"
-                            />
-                          </td>
-
-                          <td class="h-px whitespace-nowrap">
-                            <x-td-var
-                              :var="$submenu->description"
+                              :var="$submenu->active()['active']"
                             />
                           </td>
 

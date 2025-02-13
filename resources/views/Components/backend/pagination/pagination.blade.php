@@ -30,7 +30,7 @@
     {{-- Halaman Aktif --}}
     <li>
       <div aria-current="page"
-        class="mx-0.5 flex items-center justify-center h-9 px-4 font-medium text-white bg-green-600 rounded-xl drop-shadow-lg ring-1 ring-black">
+        class="mx-0.5 flex items-center justify-center h-9 px-4 font-medium text-white bg-green-700 rounded-xl drop-shadow-lg ring-1 ring-black">
         {{ $pagination->currentPage() }}
       </div>
     </li>

@@ -19,9 +19,9 @@ return new class extends Migration
       $table->string('name')->unique();
       $table->string('slug')->unique();
       $table->string('url', 5)->unique();
-      $table->string('route');
-      $table->string('active');
-      $table->string('routename');
+      $table->string('route')->default('-');
+      $table->string('active')->default('-');
+      $table->string('routename')->default('-');
       $table->string('image')->nullable();
       $table->boolean('is_active')->default(1);
       $table->text('description');

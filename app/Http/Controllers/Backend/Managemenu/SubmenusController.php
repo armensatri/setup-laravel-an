@@ -20,10 +20,10 @@ class SubmenusController extends Controller
   public function index()
   {
     $submenus = Submenu::search(request(['search', 'menu']))
-      ->select(['id', 'menu_id', 'ssm', 'name', 'is_active', 'url'])
+      ->select(['id', 'menu_id', 'ssm', 'name', 'route', 'active', 'routename', 'is_active', 'url'])
       ->with(['menu'])
       ->orderby('menu_id', 'asc')
-      ->paginate(25)
+      ->paginate(8)
       ->withQueryString();
 
     return view('backend.managemenu.submenus.index', [
@@ -79,7 +79,10 @@ class SubmenusController extends Controller
    */
   public function show(Submenu $submenu)
   {
-    //
+    return view('backend.managemenu.submenus.show', [
+      'title' => 'Detail data submenu',
+      'submenu' => $submenu
+    ]);
   }
 
   /**

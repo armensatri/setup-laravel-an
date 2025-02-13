@@ -22,7 +22,7 @@ class UsersController extends Controller
       ->select(['id', 'image', 'name', 'email', 'role_id', 'is_active', 'username'])
       ->with(['role'])
       ->orderby('role_id', 'asc')
-      ->paginate(25)
+      ->paginate(9)
       ->withQueryString();
 
     return view('backend.manageuser.users.index', [

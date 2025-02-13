@@ -37,18 +37,6 @@ class SubmenuSr extends FormRequest
         'unique:submenus,slug'
       ],
 
-      'route' => [
-        'required',
-      ],
-
-      'active' => [
-        'required'
-      ],
-
-      'routename' => [
-        'required'
-      ],
-
       'image' => [
         'image',
         'max:2048'
@@ -77,12 +65,6 @@ class SubmenuSr extends FormRequest
       'slug.min' => 'Submenu..slug! minimal 3 karakter',
       'slug.max' => 'Submenu..slug! maksimal 50 karakter',
       'slug.unique' => 'Submenu..slug! sudah terdaptar',
-
-      'route.required' => 'Submenu..route! harus di isi',
-
-      'active.required' => 'Submenu..active! harus di isi',
-
-      'routename.required' => 'Submenu..routename! harus di isi',
 
       'image.image' => 'Submenu..image! file yang di upload bukan image',
       'image.max' => 'Submenu..image! ukuran image maksimal 2 mb',

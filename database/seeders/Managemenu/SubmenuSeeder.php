@@ -45,10 +45,10 @@ class SubmenuSeeder extends Seeder
       ],
 
       [
-        'menu_id' => 1,
-        'ssm' => 4,
-        'name' => 'aktifkan 2FA',
-        'slug' => 'aktifkan-2fa',
+        'menu_id' => 2,
+        'ssm' => 1,
+        'name' => 'visitor',
+        'slug' => 'visitor',
         'route' => '-',
         'active' => '-',
         'routename' => '-',
@@ -57,9 +57,31 @@ class SubmenuSeeder extends Seeder
 
       [
         'menu_id' => 2,
-        'ssm' => 1,
-        'name' => 'visitor',
-        'slug' => 'visitor',
+        'ssm' => 2,
+        'name' => 'silabus',
+        'slug' => 'silabus',
+        'route' => '-',
+        'active' => '-',
+        'routename' => '-',
+        'description' => '-'
+      ],
+
+      [
+        'menu_id' => 2,
+        'ssm' => 3,
+        'name' => 'statistik',
+        'slug' => 'statistik',
+        'route' => '-',
+        'active' => '-',
+        'routename' => '-',
+        'description' => '-'
+      ],
+
+      [
+        'menu_id' => 2,
+        'ssm' => 4,
+        'name' => 'cont data',
+        'slug' => 'cont-data',
         'route' => '-',
         'active' => '-',
         'routename' => '-',

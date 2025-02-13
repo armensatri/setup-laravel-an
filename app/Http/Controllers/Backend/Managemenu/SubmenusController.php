@@ -90,7 +90,15 @@ class SubmenusController extends Controller
    */
   public function edit(Submenu $submenu)
   {
-    //
+    $menus = Menu::select('id', 'name')
+      ->orderby('menu_id', 'asc')
+      ->get();
+
+    return view('backend.managemenu.submenus.edit', [
+      'title' => 'Edit data submenu',
+      'submenu' => $submenu,
+      'menus' => $menus
+    ]);
   }
 
   /**

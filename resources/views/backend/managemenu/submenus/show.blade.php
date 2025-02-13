@@ -64,6 +64,45 @@
               name="Url"
               :var="$submenu->url"
             />
+
+            <x-show-data
+              name="Route"
+              :var="$submenu->route"
+            />
+
+            <x-show-data
+              name="Active"
+              :var="$submenu->active"
+            />
+
+            <x-show-data
+              name="Routename"
+              :var="$submenu->routename"
+            />
+
+            <x-show-background
+              name="Active"
+              :bg="$submenu->active()['bg']"
+              :text="$submenu->active()['text']"
+              :var="$submenu->active()['active']"
+            />
+
+            <x-show-data
+              name="Description"
+              :var="$submenu->description"
+            />
+
+            <x-show-image
+              name="Image"
+              :asset="$submenu->image"
+              asset-default="/image/default.png"
+            />
+
+            <x-show-action
+              name="Action"
+              :edit="route('submenus.edit', $submenu->url)"
+              :delete="route('submenus.destroy', $submenu->url)"
+            />
           </div>
         </div>
       </section>

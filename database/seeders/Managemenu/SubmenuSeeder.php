@@ -80,8 +80,8 @@ class SubmenuSeeder extends Seeder
       [
         'menu_id' => 2,
         'ssm' => 4,
-        'name' => 'cont data',
-        'slug' => 'cont-data',
+        'name' => 'count data',
+        'slug' => 'count-data',
         'route' => '-',
         'active' => '-',
         'routename' => '-',

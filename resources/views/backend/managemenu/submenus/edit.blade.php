@@ -28,7 +28,7 @@
                   id="name"
                   name="name"
                   value-old="name"
-                  value-default=""
+                  :value-default="$submenu->name"
                   error="name"
                   placeholder="Masukkan nama submenu"
                 />
@@ -40,7 +40,7 @@
                   id="slug"
                   name="slug"
                   value-old="slug"
-                  value-default=""
+                  :value-default="$submenu->slug"
                   error="slug"
                   placeholder="Masukkan slug submenu"
                 />
@@ -54,7 +54,7 @@
                   name="menu_id"
                   :items="$menus"
                   value-old="menu_id"
-                  value-default=""
+                  :value-default="$submenu->menu_id"
                   error="menu_id"
                   placeholder="Select menu for submenu"
                 />
@@ -66,7 +66,7 @@
                   id="ssm"
                   name="ssm"
                   value-old="ssm"
-                  value-default=""
+                  :value-default="$submenu->ssm"
                   error="ssm"
                   placeholder="Masukkan sorting submenu"
                 />
@@ -80,7 +80,7 @@
                   id="route"
                   name="route"
                   value-old="route"
-                  value-default=""
+                  :value-default="$submenu->route"
                   error="route"
                   placeholder="Masukkan route submenu"
                 />
@@ -92,7 +92,7 @@
                   id="active"
                   name="active"
                   value-old="active"
-                  value-default=""
+                  :value-default="$submenu->active"
                   error="active"
                   placeholder="Masukkan active submenu"
                 />
@@ -106,7 +106,7 @@
                   id="routename"
                   name="routename"
                   value-old="routename"
-                  value-default=""
+                  :value-default="$submenu->routename"
                   error="routename"
                   placeholder="Masukkan route name submenu"
                 />
@@ -117,7 +117,7 @@
                   id="description"
                   name="description"
                   value-old="description"
-                  value-default=""
+                  :value-default="$submenu->description"
                   error="description"
                   placeholder="Masukkan description submenu"
                 />
@@ -141,8 +141,8 @@
               </div>
 
               <div class="mt-8">
-                <x-button-create-data
-                  button-name="Create data"
+                <x-button-edit-data
+                  button-name="Update data"
                 />
               </div>
             </div>

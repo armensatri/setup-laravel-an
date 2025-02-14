@@ -21,7 +21,7 @@ class RolesController extends Controller
       ->select(['id', 'sr', 'name', 'bg', 'text', 'description', 'slug'])
       ->with('users')
       ->orderby('sr', 'asc')
-      ->paginate(9)
+      ->paginate(10)
       ->withQueryString();
 
     return view('backend.manageuser.roles.index', [

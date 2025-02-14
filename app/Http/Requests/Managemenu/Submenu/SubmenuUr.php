@@ -35,6 +35,18 @@ class SubmenuUr extends FormRequest
         'max:50',
       ],
 
+      'route' => [
+        'required'
+      ],
+
+      'active' => [
+        'required'
+      ],
+
+      'routename' => [
+        'required'
+      ],
+
       'image' => [
         'image',
         'max:2048'
@@ -61,6 +73,12 @@ class SubmenuUr extends FormRequest
       'slug.required' => 'Submenu..slug! harus di isi',
       'slug.min' => 'Submenu..slug! minimal 3 karakter',
       'slug.max' => 'Submenu..slug! maksimal 50 karakter',
+
+      'route.required' => 'Submenu..route! harus di isi',
+
+      'active.required' => 'Submenu..active! harus di isi',
+
+      'routename.required' => 'Submenu..routename! harus di isi',
 
       'image.image' => 'Submenu..image! file yang di upload bukan image',
       'image.max' => 'Submenu..image! ukuran image maksimal 2 mb',

@@ -22,7 +22,7 @@ class MenusController extends Controller
       ->select(['id', 'sm', 'name', 'description', 'url'])
       ->with(['submenus'])
       ->orderby('sm', 'asc')
-      ->paginate(9)
+      ->paginate(10)
       ->withQueryString();
 
     return view('backend.managemenu.menus.index', [

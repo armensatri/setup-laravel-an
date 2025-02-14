@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Managemenu\Menu;
 use App\Models\Managemenu\Submenu;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Managemenu\Submenu\SubmenuSr;
 use App\Http\Requests\Managemenu\Submenu\SubmenuUr;
@@ -23,7 +24,7 @@ class SubmenusController extends Controller
       ->select(['id', 'menu_id', 'ssm', 'name', 'route', 'active', 'routename', 'is_active', 'url'])
       ->with(['menu'])
       ->orderby('menu_id', 'asc')
-      ->paginate(8)
+      ->paginate(10)
       ->withQueryString();
 
     return view('backend.managemenu.submenus.index', [
@@ -106,7 +107,43 @@ class SubmenusController extends Controller
    */
   public function update(SubmenuUr $request, Submenu $submenu)
   {
-    //
+    $dataupdate = $request->validated();
+
+    if (
+      $request->name != $submenu->name ||
+      $request->slug != $submenu->slug
+    ) {
+      $rules = [
+        'name' => 'unique:submenus,name' . $submenu->id,
+        'slug' => 'unique:submenus,slug' . $submenu->id,
+      ];
+
+      $messages = [
+        'name.unique' => 'Submenu..name! sudah terdaptar',
+        'slug.unique' => 'Submenu..slug! sudah terdaptar',
+      ];
+
+      $request->validate($rules, $messages);
+    }
+
+    if ($request->hasFile('image')) {
+      if ($submenu->image != null) {
+        Storage::delete($submenu->image);
+      }
+
+      $dataupdate['image'] = $request->file('image')->store(
+        '/managemenu/submenus'
+      );
+    }
+
+    $submenu->update($dataupdate);
+
+    Alert::success(
+      'success',
+      'Data submenu! berhasil di update.'
+    );
+
+    return redirect()->route('submenus.index');
   }
 
   /**
@@ -114,7 +151,27 @@ class SubmenusController extends Controller
    */
   public function destroy(Submenu $submenu)
   {
-    //
+    if (in_array($submenu->name, ['menus', 'submenus'])) {
+      Alert::warning(
+        'Oops...',
+        'Data submenu! tidak bisa di delete.'
+      );
+
+      return redirect()->route('submenus.index');
+    }
+
+    if ($submenu->image) {
+      Storage::delete($submenu->image);
+    }
+
+    Submenu::destroy($submenu->id);
+
+    Alert::success(
+      'success',
+      'Data submenu! berhasil di delete.'
+    );
+
+    return redirect()->route('submenus.index');
   }
 
   /**

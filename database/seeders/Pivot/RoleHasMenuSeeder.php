@@ -53,10 +53,6 @@ class RoleHasMenuSeeder extends Seeder
         'role' => $superadmin->name,
         'menu' => $manageuser->name
       ],
-      $managemenu->id => [
-        'role' => $superadmin->name,
-        'menu' => $managemenu->name
-      ],
     ]);
 
     $admin->menus()->attach([
@@ -64,9 +60,9 @@ class RoleHasMenuSeeder extends Seeder
         'role' => $admin->name,
         'menu' => $account->name
       ],
-      $managemenu->id => [
+      $managedata->id => [
         'role' => $admin->name,
-        'menu' => $managemenu->name
+        'menu' => $managedata->name
       ],
     ]);
 

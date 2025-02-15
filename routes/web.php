@@ -36,6 +36,7 @@ Route::group(['middleware' => ['guest']], function () {
     function () {
       Route::get('/auth/login', 'index')->name('login');
       Route::post('/auth/login', 'store')->name('login.store');
+      Route::post('/auth/bloked', 'bloked')->name('blocked');
     }
   );
 

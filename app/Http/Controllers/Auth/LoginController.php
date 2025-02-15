@@ -65,4 +65,9 @@ class LoginController extends Controller
       return redirect()->route('login');
     }
   }
+
+  public function bloked()
+  {
+    return 'blok';
+  }
 }

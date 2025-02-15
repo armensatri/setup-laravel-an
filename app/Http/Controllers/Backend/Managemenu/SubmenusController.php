@@ -21,7 +21,7 @@ class SubmenusController extends Controller
   public function index()
   {
     $submenus = Submenu::search(request(['search', 'menu']))
-      ->select(['id', 'menu_id', 'ssm', 'name', 'route', 'active', 'routename', 'is_active', 'url'])
+      ->select(['id', 'menu_id', 'ssm', 'name', 'route', 'active', 'routename', 'is_active', 'description', 'url'])
       ->with(['menu'])
       ->orderby('menu_id', 'asc')
       ->paginate(10)

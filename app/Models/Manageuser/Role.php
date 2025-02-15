@@ -2,6 +2,7 @@
 
 namespace App\Models\Manageuser;
 
+use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,6 +40,16 @@ class Role extends Model
   public function users()
   {
     return $this->hasMany(User::class);
+  }
+
+  public function menus()
+  {
+    return $this->belongsToMany(
+      Menu::class,
+      'role_has_menu',
+      'role_id',
+      'menu_id'
+    );
   }
 
   public function scopeSearch(Builder $query, array $filters): void

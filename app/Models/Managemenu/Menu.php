@@ -3,6 +3,7 @@
 namespace App\Models\Managemenu;
 
 use App\Helpers\RandomUrl;
+use App\Models\Manageuser\Role;
 use App\Models\Managemenu\Submenu;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,6 +40,16 @@ class Menu extends Model
   public function submenus()
   {
     return $this->hasMany(Submenu::class);
+  }
+
+  public function roles()
+  {
+    return $this->belongsToMany(
+      Role::class,
+      'role_has_menu',
+      'menu_id',
+      'role_id'
+    );
   }
 
   protected static function boot()

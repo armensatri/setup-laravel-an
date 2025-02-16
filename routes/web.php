@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Backend\Account\AccountController;
+use App\Http\Controllers\Backend\Blocked\BlockedController;
 
 use App\Http\Controllers\Auth\{
   LoginController,
@@ -47,11 +48,6 @@ Route::group(['middleware' => ['guest']], function () {
   );
 });
 
-Route::get('/blocked', function () {
-  return 'blokked';
-})->name('blocked');
-
-
 Route::group(['middleware' => ['auth']], function () {
   Route::controller(LogoutController::class)->group(
     function () {
@@ -91,18 +87,17 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/owner', [OwnerController::class, 'index'])
-    ->name('owner')->middleware('role:Owner');
+    ->name('owner');
   Route::get('/superadmin', [SuperadminController::class, 'index'])
-    ->name('superadmin')->middleware('role:Super Admin');
-  Route::get('/admin', [AdminController::class, 'index'])
-    ->name('admin')->middleware('role:Admin');
-  Route::get('/member', [MemberController::class, 'index'])
-    ->name('member')->middleware('role:Member');
+    ->name('superadmin');
 });
 
 /*---------------------------------------------------------------
 | ROUTE BACKEND
 |---------------------------------------------------------------*/
+
+Route::get('/blocked', [BlockedController::class, 'index'])
+  ->name('blocked');
 
 Route::group(['middleware' => ['auth']], function () {
   Route::controller(AccountController::class)->group(

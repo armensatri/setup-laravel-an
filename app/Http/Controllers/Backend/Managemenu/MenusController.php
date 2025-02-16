@@ -14,11 +14,6 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MenusController extends Controller
 {
-  public function __construct()
-  {
-    LoginAccess::check();
-  }
-
   /**
    * Display a listing of the resource.
    */

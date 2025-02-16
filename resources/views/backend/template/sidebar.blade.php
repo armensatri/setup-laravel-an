@@ -13,8 +13,6 @@
     @auth
       <div class="mt-2">
         <ul>
-          @include('backend.template.dashboard')
-
           @foreach ($menus as $menu)
             <x-menu
               menu="{{ $menu->name }}"

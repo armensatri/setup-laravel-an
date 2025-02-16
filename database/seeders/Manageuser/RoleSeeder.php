@@ -28,24 +28,6 @@ class RoleSeeder extends Seeder
         'text' => 'yellow-800',
         'description' => 'boss system'
       ],
-
-      [
-        'sr' => 3,
-        'name' => 'Admin',
-        'slug' => 'admin',
-        'bg' => 'green-200',
-        'text' => 'green-800',
-        'description' => 'administrasi system'
-      ],
-
-      [
-        'sr' => 4,
-        'name' => 'Member',
-        'slug' => 'member',
-        'bg' => 'slate-200',
-        'text' => 'slate-800',
-        'description' => 'member biasa'
-      ],
     ];
 
     foreach ($roles as $role) {

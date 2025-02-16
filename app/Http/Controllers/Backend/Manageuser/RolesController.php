@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
+use App\Models\Managemenu\Menu;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
@@ -36,8 +37,11 @@ class RolesController extends Controller
    */
   public function create()
   {
+    $menus = Menu::select('name')->orderby('sm', 'asc')->get();
+
     return view('backend.manageuser.roles.create', [
       'title' => 'Create data role',
+      'menus' => $menus
     ]);
   }
 

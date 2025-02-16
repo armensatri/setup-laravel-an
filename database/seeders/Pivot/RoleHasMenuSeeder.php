@@ -13,63 +13,25 @@ class RoleHasMenuSeeder extends Seeder
   {
     $owner = Role::where('name', 'Owner')->first();
     $superadmin = Role::where('name', 'Super Admin')->first();
-    $admin = Role::where('name', 'Admin')->first();
-    $member = Role::where('name', 'Member')->first();
 
-    $account = Menu::where('name', 'account')->first();
-    $managedata = Menu::where('name', 'manage data')->first();
-    $manageuser = Menu::where('name', 'manage user')->first();
-    $managemenu = Menu::where('name', 'manage menu')->first();
+    $menuowner = Menu::where('name', 'owner')->first();
+    $menusuperadmin = Menu::where('name', 'superadmin')->first();
 
     $owner->menus()->attach([
-      $account->id => [
+      $menuowner->id => [
         'role' => $owner->name,
-        'menu' => $account->name
+        'menu' => $menuowner->name
       ],
-      $managedata->id => [
+      $menusuperadmin->id => [
         'role' => $owner->name,
-        'menu' => $managedata->name
-      ],
-      $manageuser->id => [
-        'role' => $owner->name,
-        'menu' => $manageuser->name
-      ],
-      $managemenu->id => [
-        'role' => $owner->name,
-        'menu' => $managemenu->name
+        'menu' => $menusuperadmin->name
       ],
     ]);
 
     $superadmin->menus()->attach([
-      $account->id => [
+      $menusuperadmin->id => [
         'role' => $superadmin->name,
-        'menu' => $account->name
-      ],
-      $managedata->id => [
-        'role' => $superadmin->name,
-        'menu' => $managedata->name
-      ],
-      $manageuser->id => [
-        'role' => $superadmin->name,
-        'menu' => $manageuser->name
-      ],
-    ]);
-
-    $admin->menus()->attach([
-      $account->id => [
-        'role' => $admin->name,
-        'menu' => $account->name
-      ],
-      $managedata->id => [
-        'role' => $admin->name,
-        'menu' => $managedata->name
-      ],
-    ]);
-
-    $member->menus()->attach([
-      $account->id => [
-        'role' => $member->name,
-        'menu' => $account->name
+        'menu' => $menusuperadmin->name
       ],
     ]);
   }

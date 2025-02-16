@@ -36,7 +36,6 @@ Route::group(['middleware' => ['guest']], function () {
     function () {
       Route::get('/auth/login', 'index')->name('login');
       Route::post('/auth/login', 'store')->name('login.store');
-      Route::post('/auth/bloked', 'bloked')->name('blocked');
     }
   );
 
@@ -47,6 +46,11 @@ Route::group(['middleware' => ['guest']], function () {
     }
   );
 });
+
+Route::get('/blocked', function () {
+  return 'blokked';
+})->name('blocked');
+
 
 Route::group(['middleware' => ['auth']], function () {
   Route::controller(LogoutController::class)->group(
@@ -87,13 +91,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/owner', [OwnerController::class, 'index'])
-    ->name('owner');
+    ->name('owner')->middleware('role:Owner');
   Route::get('/superadmin', [SuperadminController::class, 'index'])
-    ->name('superadmin');
+    ->name('superadmin')->middleware('role:Super Admin');
   Route::get('/admin', [AdminController::class, 'index'])
-    ->name('admin');
+    ->name('admin')->middleware('role:Admin');
   Route::get('/member', [MemberController::class, 'index'])
-    ->name('member');
+    ->name('member')->middleware('role:Member');
 });
 
 /*---------------------------------------------------------------

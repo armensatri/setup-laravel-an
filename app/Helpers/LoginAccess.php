@@ -4,41 +4,30 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginAccess
 {
   public static function check()
   {
-    $session = app('session');
-    $redirect = app('redirect');
-    $request = app('request');
-    $router = app('router');
-    $auth = auth();
+    if (!Session::has('email')) {
+      return Redirect::route('login')->send();
+    } else {
+      $role_id = Auth::user()->role_id;
+      $menu = request()->segment(1);
 
-    // 🚀 Cek session, redirect jika tidak login
-    if (!$session->has('email')) {
-      return $redirect->route('login')->send();
-    }
+      $queryMenu = DB::table('menu')->where('name', $menu)->first();
+      $menu_id = $queryMenu->id;
 
-    // 🔹 Ambil data user & role
-    $user = Auth::user();
-    $roleId = $user?->role_id;
+      $useAccess = DB::table('role_has_menu')
+        ->where('role_id', $role_id)
+        ->where('menu_id', $menu_id)
+        ->exists();
 
-    // 🔹 Ambil menu & controller dari URL
-    $menu = $request->segment(1);
-
-    // 🔹 Cek menu di database
-    $menuId = DB::table('menus')->where('name', $menu)->value('id');
-
-    // 🔹 Cek akses role ke menu
-    $hasAccess = DB::table('role_has_menu')
-      ->where('role_id', $roleId)
-      ->where('menu_id', $menuId)
-      ->exists();
-
-    // 🚀 Redirect jika akses ditolak
-    if (!$hasAccess) {
-      return $redirect->route('blocked');
+      if (!$useAccess) {
+        return Redirect::route('blocked')->send();
+      }
     }
   }
 }

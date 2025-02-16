@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Managemenu;
 
 use App\Helpers\RandomUrl;
+use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
 use App\Models\Managemenu\Menu;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,11 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MenusController extends Controller
 {
+  public function __construct()
+  {
+    LoginAccess::check();
+  }
+
   /**
    * Display a listing of the resource.
    */

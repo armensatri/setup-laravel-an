@@ -3,17 +3,12 @@
 namespace App\Http\Controllers\Backend\Dashboard;
 
 use App\Helpers\LoginAccess;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-  public function __construct()
-  {
-    LoginAccess::check();
-  }
-
   public function index()
   {
     $admin = Auth::user();

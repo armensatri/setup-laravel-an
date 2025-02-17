@@ -9,6 +9,8 @@ class BlockedController extends Controller
 {
   public function index()
   {
-    return view('backend.blocked.index');
+    return view('backend.blocked.index', [
+      'title' => 'Access blocked'
+    ]);
   }
 }

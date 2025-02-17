@@ -56,9 +56,7 @@
                   error="sr"
                   placeholder="Masukkan sorting role"
                 />
-              </div>
 
-              <div class="gap-8 mx-auto md:flex">
                 <x-input
                   label-for="bg"
                   label-name="Role..bg"
@@ -70,7 +68,9 @@
                   error="bg"
                   placeholder="Masukkan background role, ex : red-200"
                 />
+              </div>
 
+              <div class="gap-8 mx-auto md:flex">
                 <x-input
                   label-for="text"
                   label-name="Role..text"
@@ -82,9 +82,7 @@
                   error="text"
                   placeholder="Masukkan color text role, ex : red-800"
                 />
-              </div>
 
-              <div class="gap-8 mx-auto md:flex">
                 <x-input-textarea
                   label-for="description"
                   label-name="Role..description"
@@ -97,32 +95,35 @@
                 />
               </div>
 
-              <div class="gap-8 md:flex"> <!-- Hapus mx-auto -->
+              <div class="gap-8 mx-auto md:flex"> <!-- Hapus mx-auto -->
                 <div class="w-full py-2">
                   <div class="flex ml-1 justify-start gap-1.5">
-                    <label for="menu_id" class="block mb-1.5 text-base font-medium text-green-700">
+                    <label for="menu" class="block mb-1.5 text-base font-medium text-green-700">
                       Role..menu
                     </label>
                   </div>
 
                   <div class="border border-gray-300 rounded-2xl">
-                    <div class="p-4 grid h-[200px] grid-cols-1
-                      sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4
-                      gap-x-6 mt-2 overflow-y-scroll">
-                      {{-- @foreach ($menus as $menu) --}}
-                        <div class="flex">
-                          <input id="disabled-checkbox"
-                            type="checkbox"
-                            value=""
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                          />
+                    <div class="px-4 grid h-[180px] grid-cols-1 gap-1 mt-2
+                      overflow-y-auto sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
+                      @foreach ($menus as $menu)
+                        <div class="flex items-center gap-x-[5px] px-2">
+                          <div>
+                            <div class="flex items-center">
+                              <input type="checkbox"
+                                id="menu[{{ $menu->name }}]"
+                                name="menu[{{ $menu->name }}]"
+                                value="{{ $menu->name }}"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer"
+                              />
+                            </div>
+                          </div>
 
-                          <label for="disabled-checkbox"
-                            class="text-sm font-medium text-gray-700 ms-2 dark:text-gray-500">
-                            Disabled checkbox
-                          </label>
+                          <div class="p-1 text-sm font-medium tracking-wide text-gray-800 whitespace-nowrap">
+                            {{ $menu->name }}
+                          </div>
                         </div>
-                      {{-- @endforeach --}}
+                      @endforeach
                     </div>
                   </div>
                 </div>

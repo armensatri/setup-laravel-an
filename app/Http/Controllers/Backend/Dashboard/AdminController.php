@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+  public function __construct()
+  {
+    LoginAccess::check();
+  }
+
   public function index()
   {
     $admin = Auth::user();

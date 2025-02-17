@@ -21,7 +21,7 @@ class MenusController extends Controller
   {
     $menus = Menu::search(request(['search']))
       ->select(['id', 'sm', 'name', 'description', 'url'])
-      ->with(['submenus'])
+      ->with(['submenus', 'roles'])
       ->orderby('sm', 'asc')
       ->paginate(10)
       ->withQueryString();

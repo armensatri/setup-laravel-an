@@ -44,6 +44,10 @@ class RoleSr extends FormRequest
       'description' => [
         'required'
       ],
+
+      'menus' => [
+        'required'
+      ]
     ];
   }
 
@@ -68,6 +72,8 @@ class RoleSr extends FormRequest
       'text.required' => 'Role..text! harus di isi',
 
       'description.required' => 'Role..description! harus di isi',
+
+      'menus.required' => 'Role..menu! harus di isi'
     ];
   }
 }

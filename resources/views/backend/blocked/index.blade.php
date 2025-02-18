@@ -1,13 +1,3 @@
-{{-- <div class="flex flex-col items-center justify-center min-h-screen">
-  <h1 class="text-2xl font-bold text-red-600">Akses Diblokir</h1>
-  <p class="text-gray-700">Anda tidak memiliki akses ke halaman ini.</p>
-
-  <a href="{{ \App\Helpers\LoginAccess::getDashboardRoute() }}"
-    class="px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700">
-    Kembali ke Dashboard
-  </a>
-</div> --}}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,17 +24,24 @@
     />
   </head>
 
-  <body class="bg-blue-500">
-    <section class=" dark:bg-gray-900">
-      <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
-          <div class="max-w-screen-sm mx-auto text-center">
-              <h1 class="mb-4 font-extrabold tracking-tight text-7xl lg:text-9xl text-primary-600 dark:text-primary-500">404</h1>
-              <p class="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl dark:text-white">Something's missing.</p>
-              <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Sorry, we can't find that page. You'll find lots to explore on the home page. </p>
-              <a href="#" class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4">Back to Homepage</a>
-          </div>
-      </div>
+  <body class="flex items-center justify-center h-screen bg-sky-100">
+    <section class="dark:bg-gray-900">
+        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
+            <div class="max-w-screen-sm mx-auto text-center">
+                <div class="mb-4 text-4xl font-extrabold tracking-normal text-red-800 lg:text-5xl text-primary-600">
+                  Access blocked
+                </div>
+
+                <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Anda, tidak ada akses ke halaman ini</p>
+                <a href="{{ \App\Helpers\LoginAccess::getDashboardRoute() }}">
+                  <button type="button" class="inline-flex items-center px-3.5 py-2 text-sm font-medium tracking-wider text-white bg-blue-600 border border-transparent rounded-xl gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                    back dashboard
+                  </button>
+                </a>
+            </div>
+        </div>
     </section>
-  </body>
+</body>
+
 </html>
 

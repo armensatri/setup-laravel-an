@@ -10,18 +10,3 @@ function previewImage() {
     imgPreview.src = oFREvent.target.result;
   };
 }
-
-// Input type checkbox - RolesController.create.edit field permissions
-document.addEventListener("DOMContentLoaded", () => {
-  const allPermissionCheckbox = document.querySelector(
-    '[name="all_permission"]'
-  );
-
-  allPermissionCheckbox?.addEventListener("click", () => {
-    document
-      .querySelectorAll(".permission")
-      .forEach(
-        (checkbox) => (checkbox.checked = allPermissionCheckbox.checked)
-      );
-  });
-});

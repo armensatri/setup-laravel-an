@@ -19,19 +19,19 @@ class RoleHasMenuSeeder extends Seeder
 
     $owner->menus()->attach([
       $menuowner->id => [
-        'role' => $owner->name,
-        'menu' => $menuowner->name
+        // 'role' => $owner->name,
+        // 'menu' => $menuowner->name
       ],
       $menusuperadmin->id => [
-        'role' => $owner->name,
-        'menu' => $menusuperadmin->name
+        // 'role' => $owner->name,
+        // 'menu' => $menusuperadmin->name
       ],
     ]);
 
     $superadmin->menus()->attach([
       $menusuperadmin->id => [
-        'role' => $superadmin->name,
-        'menu' => $menusuperadmin->name
+        // 'role' => $superadmin->name,
+        // 'menu' => $menusuperadmin->name
       ],
     ]);
   }

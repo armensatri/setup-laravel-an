@@ -37,7 +37,9 @@ class RolesController extends Controller
    */
   public function create()
   {
-    $menus = Menu::select('name')->orderby('sm', 'asc')->get();
+    $menus = Menu::select('id', 'name')
+      ->orderby('sm', 'asc')
+      ->get();
 
     return view('backend.manageuser.roles.create', [
       'title' => 'Create data role',
@@ -52,7 +54,11 @@ class RolesController extends Controller
   {
     $datastore = $request->validated();
 
-    Role::create($datastore);
+    $role = Role::create($datastore);
+
+    $menus = $request->input('menus', []); // Default array kosong jika tidak ada yang dipilih
+
+    $role->menus()->attach($menus);
 
     Alert::success(
       'success',

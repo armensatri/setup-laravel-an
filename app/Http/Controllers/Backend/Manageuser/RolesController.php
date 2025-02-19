@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Backend\Manageuser;
 
 use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
+use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\Role;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
-use App\Models\Managemenu\Menu;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
 {
+  // public function __construct()
+  // {
+  //   LoginAccess::check();
+  // }
+
   /**
    * Display a listing of the resource.
    */
@@ -165,7 +171,6 @@ class RolesController extends Controller
 
     $menus = Menu::select('id', 'sm', 'name')
       ->orderBy('sm', 'asc')
-      ->where('id', '!=', 1)
       ->paginate(10);
 
     return view('backend.manageuser.roles.access', [
@@ -173,5 +178,34 @@ class RolesController extends Controller
       'role' => $role,
       'menus' => $menus
     ]);
+  }
+
+  public function changeAccess(Request $request)
+  {
+    // Ambil data yang dikirimkan dari AJAX
+    $roleId = $request->role_id;  // Ambil role_id dari request
+    $menuId = $request->menu_id;  // Ambil menu_id dari request
+
+    // Buat array data untuk digunakan dalam query
+    $data = [
+      'role_id' => $roleId,
+      'menu_id' => $menuId
+    ];
+
+    // Cek apakah data role_id dan menu_id sudah ada di tabel role_has_menu
+    $exists = DB::table('role_has_menu')->where($data)->exists();
+
+    if ($exists) {
+      // Jika ada, hapus akses (uncheck)
+      DB::table('role_has_menu')->where($data)->delete();
+      $message = 'Akses berhasil dihapus!';
+    } else {
+      // Jika tidak ada, tambahkan akses (check)
+      DB::table('role_has_menu')->insert($data);
+      $message = 'Akses berhasil ditambahkan!';
+    }
+
+    // Kembalikan response JSON ke frontend
+    return response()->json(['success' => true, 'message' => $message]);
   }
 }

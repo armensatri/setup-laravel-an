@@ -1,4 +1,3 @@
-// function previewImage() class .img-preview
 function previewImage() {
   const image = document.querySelector("#image");
   const imgPreview = document.querySelector(".img-preview");

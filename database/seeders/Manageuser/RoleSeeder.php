@@ -19,15 +19,6 @@ class RoleSeeder extends Seeder
         'text' => 'red-800',
         'description' => 'owner system'
       ],
-
-      [
-        'sr' => 2,
-        'name' => 'superadmin',
-        'slug' => 'superadmin',
-        'bg' => 'yellow-200',
-        'text' => 'yellow-800',
-        'description' => 'boss system'
-      ],
     ];
 
     foreach ($roles as $role) {

@@ -71,15 +71,15 @@
           <ul aria-labelledby="dropdownHoverButton"
             class="py-2 text-sm text-gray-700 dark:text-gray-200">
             <li>
-              @if (Auth::user()->role->name === 'Owner')
+              @if (Auth::user()->role->name === 'owner')
                 <x-route-to-dashboard
                   :route="route('owner')"
                 />
-              @elseif (Auth::user()->role->name === 'Super Admin')
+              @elseif (Auth::user()->role->name === 'superadmin')
                 <x-route-to-dashboard
                   :route="route('superadmin')"
                 />
-              @elseif (Auth::user()->role->name === 'Admin')
+              @elseif (Auth::user()->role->name === 'admin')
                 <x-route-to-dashboard
                   :route="route('admin')"
                 />

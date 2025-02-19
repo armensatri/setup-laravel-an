@@ -14,6 +14,11 @@ use App\Http\Requests\Manageuser\User\UserUr;
 
 class UsersController extends Controller
 {
+  // public function __construct()
+  // {
+  //   LoginAccess::check();
+  // }
+
   /**
    * Display a listing of the resource.
    */

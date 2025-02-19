@@ -38,7 +38,7 @@ class LoginController extends Controller
 
       $maproutes = [
         'owner' => 'owner',
-        'super Admin' => 'superadmin',
+        'superadmin' => 'superadmin',
         'admin' => 'admin',
         'member' => 'member'
       ];

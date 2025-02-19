@@ -19,34 +19,27 @@ class MenuSeeder extends Seeder
 
       [
         'sm' => 2,
-        'name' => 'superadmin',
-        'slug' => 'superadmin',
-        'description' => 'menu super admin'
-      ],
-
-      [
-        'sm' => 3,
         'name' => 'account',
         'slug' => 'account',
         'description' => 'menu account user'
       ],
 
       [
-        'sm' => 4,
+        'sm' => 3,
         'name' => 'managedata',
         'slug' => 'managedata',
         'description' => 'menu monitoring data'
       ],
 
       [
-        'sm' => 5,
+        'sm' => 4,
         'name' => 'manageuser',
         'slug' => 'manageuser',
         'description' => 'menu access user'
       ],
 
       [
-        'sm' => 6,
+        'sm' => 5,
         'name' => 'managemenu',
         'slug' => 'managemenu',
         'description' => 'menu access menu dan submenu'

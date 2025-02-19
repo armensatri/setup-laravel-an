@@ -90,6 +90,10 @@ Route::group(['middleware' => 'auth'], function () {
     ->name('owner');
   Route::get('/superadmin', [SuperadminController::class, 'index'])
     ->name('superadmin');
+  Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin');
+  Route::get('/member', [MemberController::class, 'index'])
+    ->name('member');
 });
 
 /*---------------------------------------------------------------
@@ -103,6 +107,11 @@ Route::get('/roles/access/{id}/{name}', [
   RolesController::class,
   'access'
 ])->name('access');
+
+Route::post('/roles/changeaccess', [RolesController::class, 'changeaccess'])->name('changeaccess');
+
+
+
 
 Route::group(['middleware' => ['auth']], function () {
   Route::controller(AccountController::class)->group(

@@ -13,7 +13,7 @@ class RoleSeeder extends Seeder
     $roles = [
       [
         'sr' => 1,
-        'name' => 'Owner',
+        'name' => 'owner',
         'slug' => 'owner',
         'bg' => 'red-200',
         'text' => 'red-800',
@@ -22,8 +22,8 @@ class RoleSeeder extends Seeder
 
       [
         'sr' => 2,
-        'name' => 'Super Admin',
-        'slug' => 'super-admin',
+        'name' => 'superadmin',
+        'slug' => 'superadmin',
         'bg' => 'yellow-200',
         'text' => 'yellow-800',
         'description' => 'boss system'

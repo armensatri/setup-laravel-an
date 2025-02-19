@@ -78,6 +78,9 @@
                         <x-th
                           name="description"
                         />
+                        <x-th
+                          name="menu"
+                        />
                         <x-th-action/>
                       </tr>
                     </thead>
@@ -121,6 +124,17 @@
                             <x-td-var
                               :var="$role->description"
                             />
+                          </td>
+
+                          <td class="h-px whitespace-nowrap">
+                            <div class="center">
+                              <x-role-access
+                                :route="route('access', [
+                                  'id' => $role->id,
+                                  'name' => $role->name
+                                ])"
+                              />
+                            </div>
                           </td>
 
                           <td class="size-px whitespace-nowrap">

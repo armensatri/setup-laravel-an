@@ -26,6 +26,7 @@ use App\View\Components\Backend\Table\{
   TdVarWidth,
   Th,
   ThAction,
+  RoleAccess,
 };
 
 use App\View\Components\Backend\Button\{
@@ -72,6 +73,7 @@ class BackendServiceProvider extends ServiceProvider
     Blade::component('td-action', TdAction::class);
     Blade::component('th-action', ThAction::class);
     Blade::component('td-var-bg', TdVarBg::class);
+    Blade::component('role-access', RoleAccess::class);
 
     // BUTTON
     Blade::component('button-create', ButtonCreate::class);

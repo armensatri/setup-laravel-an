@@ -54,11 +54,7 @@ class RolesController extends Controller
   {
     $datastore = $request->validated();
 
-    $role = Role::create($datastore);
-
-    $menus = $request->input('menus', []); // Default array kosong jika tidak ada yang dipilih
-
-    $role->menus()->attach($menus);
+    Role::create($datastore);
 
     Alert::success(
       'success',
@@ -160,5 +156,22 @@ class RolesController extends Controller
     );
 
     return response()->json(['slug' => $slug]);
+  }
+
+  public function access($id)
+  {
+    $role = Role::findOrFail($id);
+
+
+    $menus = Menu::select('id', 'sm', 'name')
+      ->orderBy('sm', 'asc')
+      ->where('id', '!=', 1)
+      ->paginate(10);
+
+    return view('backend.manageuser.roles.access', [
+      'title' => 'Role access' . ' ' . $role->name,
+      'role' => $role,
+      'menus' => $menus
+    ]);
   }
 }

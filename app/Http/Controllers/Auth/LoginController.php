@@ -37,10 +37,10 @@ class LoginController extends Controller
       $request->session()->regenerate();
 
       $maproutes = [
-        'Owner' => 'owner',
-        'Super Admin' => 'superadmin',
-        'Admin' => 'admin',
-        'Member' => 'member'
+        'owner' => 'owner',
+        'super Admin' => 'superadmin',
+        'admin' => 'admin',
+        'member' => 'member'
       ];
 
       $role = Auth::user()->role->name ?? null;

@@ -43,10 +43,18 @@ class LoginAccess
     $routes = [
       'Owner' => 'owner',
       'Super Admin' => 'superadmin',
-      'Admin' => 'admin.dashboard',
+      'Admin' => 'admin',
       'Member' => 'member',
     ];
 
     return $routes[$user->role->name] ?? route('home');
+  }
+
+  public static function checkaccess($roleId, $menuId)
+  {
+    return DB::table('role_has_menu')
+      ->where('role_id', $roleId)
+      ->where('menu_id', $menuId)
+      ->exists() ? 'checked' : '';
   }
 }

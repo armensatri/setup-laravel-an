@@ -16,10 +16,10 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SubmenusController extends Controller
 {
-  public function __construct()
-  {
-    LoginAccess::check();
-  }
+  // public function __construct()
+  // {
+  //   LoginAccess::check();
+  // }
 
   /**
    * Display a listing of the resource.
@@ -45,7 +45,7 @@ class SubmenusController extends Controller
   public function create(Submenu $submenu)
   {
     $menus = Menu::select('id', 'name')
-      ->orderby('menu_id', 'asc')
+      ->orderby('id', 'asc')
       ->get();
 
     return view('backend.managemenu.submenus.create', [

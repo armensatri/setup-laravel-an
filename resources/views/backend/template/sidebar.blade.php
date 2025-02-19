@@ -20,7 +20,7 @@
             @foreach ($menu->submenus as $submenu)
               <li class="px-2">
                 <x-submenu
-                  :route="'/' . $submenu->routename"
+                  :route="$submenu->routename"
                   {{-- :route="route($submenu->routename)" --}}
                   :active="$submenu->active . '*'"
                   :sub-menu="$submenu->name"

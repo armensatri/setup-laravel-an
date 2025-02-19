@@ -16,6 +16,7 @@ class RoleHasMenuSeeder extends Seeder
 
     $menuowner = Menu::where('name', 'owner')->first();
     $menusuperadmin = Menu::where('name', 'superadmin')->first();
+    $menumanagemenu = Menu::where('name', 'managemenu')->first();
 
     $owner->menus()->attach([
       $menuowner->id => [
@@ -23,6 +24,10 @@ class RoleHasMenuSeeder extends Seeder
         // 'menu' => $menuowner->name
       ],
       $menusuperadmin->id => [
+        // 'role' => $owner->name,
+        // 'menu' => $menusuperadmin->name
+      ],
+      $menumanagemenu->id => [
         // 'role' => $owner->name,
         // 'menu' => $menusuperadmin->name
       ],

@@ -32,6 +32,28 @@ class SubmenuSeeder extends Seeder
         'routename' => '-',
         'description' => '-'
       ],
+
+      [
+        'menu_id' => 6,
+        'ssm' => 1,
+        'name' => 'menus',
+        'slug' => 'menus',
+        'route' => 'menus',
+        'active' => 'menus',
+        'routename' => '/menus',
+        'description' => 'pengelolahan menu'
+      ],
+
+      [
+        'menu_id' => 6,
+        'ssm' => 2,
+        'name' => 'submenus',
+        'slug' => 'submenus',
+        'route' => 'submenus',
+        'active' => 'submenus',
+        'routename' => '/submenus',
+        'description' => 'pengelolahan submenu'
+      ],
     ];
 
     foreach ($submenus as $submenu) {

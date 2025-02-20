@@ -103,14 +103,17 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/blocked', [BlockedController::class, 'index'])
   ->name('blocked');
 
-Route::get('/roles/access/{id}/{name}', [
-  RolesController::class,
-  'access'
-])->name('access');
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/roles/access/{id}/{name}', [
+    RolesController::class,
+    'access'
+  ])->name('access');
 
-Route::post('/roles/changeaccess', [RolesController::class, 'changeaccess'])->name('changeaccess');
-
-
+  Route::post('/roles/changeaccess', [
+    RolesController::class,
+    'changeaccess'
+  ])->name('changeaccess');
+});
 
 
 Route::group(['middleware' => ['auth']], function () {

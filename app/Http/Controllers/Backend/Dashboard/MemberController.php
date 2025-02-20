@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
-  // public function __construct()
-  // {
-  //   LoginAccess::check();
-  // }
+  public function __construct()
+  {
+    LoginAccess::check();
+  }
 
   public function index()
   {

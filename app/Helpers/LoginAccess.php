@@ -20,6 +20,7 @@ class LoginAccess
 
     // Cek apakah menu ada di database
     $queryMenu = DB::table('menus')->where('name', $menu)->first();
+
     if (!$queryMenu) {
       abort(404, 'Menu tidak ditemukan'); // Tampilkan 404 jika menu tidak ada
     }

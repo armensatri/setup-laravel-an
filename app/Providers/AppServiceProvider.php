@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         ->join('role_has_menu', 'menus.id', '=', 'role_has_menu.menu_id')
         ->where('role_has_menu.role_id', $role_id)
         ->select('menus.*')
+        ->orderBy('menus.sm', 'asc')
         ->get();
 
       $view->with('menus', $menus);

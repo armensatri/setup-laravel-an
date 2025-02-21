@@ -26,6 +26,13 @@
                       table-name="access menu"
                       :page-data="$menus"
                     />
+
+                    <div class="indexs">
+                      <x-indexs
+                        :route="route('roles.index')"
+                        name="back to roles"
+                      />
+                    </div>
                   </div>
 
                   <table class="min-w-full divide-y divide-gray-200">
@@ -116,53 +123,54 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".access-checkbox").forEach(checkbox => {
-    checkbox.addEventListener("change", async function () {
-      const roleId = this.getAttribute("data-role");  // Ambil role_id
-      const roleName = this.getAttribute("data-role-name"); // Ambil role_name
-      const menuId = this.getAttribute("data-menu");  // Ambil menu_id
-      const isChecked = this.checked ? 1 : 0; // 1 = Insert, 0 = Delete
+      document.querySelectorAll(".access-checkbox").forEach((checkbox) => {
+        checkbox.addEventListener("change", async function () {
+          const roleId = this.getAttribute("data-role"); // Ambil role_id
+          const roleName = this.getAttribute("data-role-name"); // Ambil role_name
+          const menuId = this.getAttribute("data-menu"); // Ambil menu_id
+          const isChecked = this.checked ? 1 : 0; // 1 = Insert, 0 = Delete
 
-      try {
-        const response = await fetch("{{ route('changeaccess') }}", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
-          },
-          body: JSON.stringify({ role_id: roleId, menu_id: menuId, is_checked: isChecked })
+          try {
+            const response = await fetch("{{ route('changeaccess') }}", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                  .content,
+              },
+              body: JSON.stringify({
+                role_id: roleId,
+                menu_id: menuId,
+                is_checked: isChecked,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+              Swal.fire({
+                title: "Success",
+                text: result.message,
+                icon: "success",
+              }).then(() => {
+                window.location.href = "{{ route('access', [':id', ':name']) }}"
+                  .replace(":id", roleId)
+                  .replace(":name", encodeURIComponent(roleName)); // Ganti kedua parameter
+              });
+            } else {
+              throw new Error(result.message);
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            Swal.fire("Error", "Something went wrong!", "error");
+            this.checked = !this.checked; // Revert jika error
+          }
         });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.success) {
-          Swal.fire({
-            title: "Success",
-            text: result.message,
-            icon: "success"
-          }).then(() => {
-            window.location.href = "{{ route('access', [':id', ':name']) }}"
-              .replace(':id', roleId)
-              .replace(':name', encodeURIComponent(roleName)); // Ganti kedua parameter
-          });
-        } else {
-          throw new Error(result.message);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        Swal.fire("Error", "Something went wrong!", "error");
-        this.checked = !this.checked; // Revert jika error
-      }
+      });
     });
-  });
-});
-
-
   </script>
-
-
 @endSection

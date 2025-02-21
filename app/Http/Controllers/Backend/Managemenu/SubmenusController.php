@@ -16,10 +16,10 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SubmenusController extends Controller
 {
-  public function __construct()
-  {
-    LoginAccess::check();
-  }
+  // public function __construct()
+  // {
+  //   SubmenuAccess::check();
+  // }
 
   /**
    * Display a listing of the resource.

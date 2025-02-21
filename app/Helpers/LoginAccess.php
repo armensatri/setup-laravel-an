@@ -42,10 +42,10 @@ class LoginAccess
     if (!$user) return route('home');
 
     $routes = [
-      'Owner' => 'owner',
-      'Super Admin' => 'superadmin',
-      'Admin' => 'admin',
-      'Member' => 'member',
+      'owner' => 'owner',
+      'superadmin' => 'superadmin',
+      'admin' => 'admin',
+      'member' => 'member',
     ];
 
     return $routes[$user->role->name] ?? route('home');

@@ -48,6 +48,16 @@ class Submenu extends Model
     return $this->belongsTo(Menu::class);
   }
 
+  public function roles()
+  {
+    return $this->belongsToMany(
+      Menu::class,
+      'role_has_submenu',
+      'submenu_id',
+      'role_id',
+    );
+  }
+
   public function active(): array
   {
     return $this->is_active

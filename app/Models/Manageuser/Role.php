@@ -52,6 +52,16 @@ class Role extends Model
     );
   }
 
+  public function submenus()
+  {
+    return $this->belongsToMany(
+      Menu::class,
+      'role_has_submenu',
+      'role_id',
+      'submenu_id'
+    );
+  }
+
   public function scopeSearch(Builder $query, array $filters): void
   {
     $fields = ['name'];

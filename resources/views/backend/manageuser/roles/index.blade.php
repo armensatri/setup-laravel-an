@@ -81,6 +81,9 @@
                         <x-th
                           name="menu"
                         />
+                        <x-th
+                          name="submenu"
+                        />
                         <x-th-action/>
                       </tr>
                     </thead>
@@ -130,6 +133,17 @@
                             <div class="center">
                               <x-role-access
                                 :route="route('access', [
+                                  'id' => $role->id,
+                                  'name' => $role->name
+                                ])"
+                              />
+                            </div>
+                          </td>
+
+                          <td class="h-px whitespace-nowrap">
+                            <div class="center">
+                              <x-role-access
+                                :route="route('accesssubmenu', [
                                   'id' => $role->id,
                                   'name' => $role->name
                                 ])"

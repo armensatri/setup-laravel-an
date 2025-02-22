@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Managemenu;
 use App\Helpers\RandomUrl;
 use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
+use App\Helpers\SubmenuAccess;
 use App\Models\Managemenu\Menu;
 use App\Models\Managemenu\Submenu;
 use App\Http\Controllers\Controller;
@@ -16,10 +17,10 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SubmenusController extends Controller
 {
-  // public function __construct()
-  // {
-  //   SubmenuAccess::check();
-  // }
+  public function __construct()
+  {
+    SubmenuAccess::check();
+  }
 
   /**
    * Display a listing of the resource.

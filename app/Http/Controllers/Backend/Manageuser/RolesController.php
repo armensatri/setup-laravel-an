@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Manageuser;
 
 use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
+use App\Helpers\SubmenuAccess;
 use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\Role;
 use Illuminate\Support\Facades\DB;
@@ -11,14 +12,15 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
+use App\Models\Managemenu\Submenu;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
 {
-  // public function __construct()
-  // {
-  //   SubmenuAccess::check();
-  // }
+  public function __construct()
+  {
+    SubmenuAccess::check();
+  }
 
   /**
    * Display a listing of the resource.
@@ -168,7 +170,6 @@ class RolesController extends Controller
   {
     $role = Role::findOrFail($id);
 
-
     $menus = Menu::select('id', 'sm', 'name')
       ->orderBy('sm', 'asc')
       ->paginate(10);
@@ -202,6 +203,50 @@ class RolesController extends Controller
     } else {
       // Jika tidak ada, tambahkan akses (check)
       DB::table('role_has_menu')->insert($data);
+      $message = 'Akses berhasil ditambahkan!';
+    }
+
+    // Kembalikan response JSON ke frontend
+    return response()->json(['success' => true, 'message' => $message]);
+  }
+
+  public function accesssubmenu($id)
+  {
+    $role = Role::findOrFail($id);
+
+    $submenus = Submenu::select('id', 'ssm', 'name')
+      ->orderBy('sm', 'asc')
+      ->paginate(10);
+
+    return view('backend.manageuser.roles.accesssubmenu', [
+      'title' => 'Role access' . ' ' . $role->name,
+      'role' => $role,
+      'submenus' => $submenus
+    ]);
+  }
+
+  public function changeaccesssubmenu(Request $request)
+  {
+    // Ambil data yang dikirimkan dari AJAX
+    $roleId = $request->role_id;  // Ambil role_id dari request
+    $submenuId = $request->submenu_id;  // Ambil menu_id dari request
+
+    // Buat array data untuk digunakan dalam query
+    $data = [
+      'role_id' => $roleId,
+      'submenu_id' => $submenuId
+    ];
+
+    // Cek apakah data role_id dan menu_id sudah ada di tabel role_has_menu
+    $exists = DB::table('role_has_submenu')->where($data)->exists();
+
+    if ($exists) {
+      // Jika ada, hapus akses (uncheck)
+      DB::table('role_has_submenu')->where($data)->delete();
+      $message = 'Akses berhasil dihapus!';
+    } else {
+      // Jika tidak ada, tambahkan akses (check)
+      DB::table('role_has_submenu')->insert($data);
       $message = 'Akses berhasil ditambahkan!';
     }
 

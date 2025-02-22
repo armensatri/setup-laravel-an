@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Home\HomeController;
-use App\Http\Controllers\Backend\Account\AccountController;
 use App\Http\Controllers\Backend\Blocked\BlockedController;
 
 use App\Http\Controllers\Auth\{
@@ -27,6 +26,11 @@ use App\Http\Controllers\Backend\Managemenu\{
   MenusController,
   SubmenusController,
 };
+
+use App\Http\Controllers\Backend\Account\{
+  ProfileController,
+};
+
 
 /*---------------------------------------------------------------
 | ROUTE AUTH
@@ -113,15 +117,22 @@ Route::group(['middleware' => ['auth']], function () {
     RolesController::class,
     'changeaccess'
   ])->name('changeaccess');
+
+  Route::get('/roles/accesssubmenu/{id}/{name}', [
+    RolesController::class,
+    'accesssubmenu'
+  ])->name('accesssubmenu');
+
+  Route::post('/roles/changeaccesssubmenu', [
+    RolesController::class,
+    'changeaccesssubmenu'
+  ])->name('changeaccesssubmenu');
 });
 
 
 Route::group(['middleware' => ['auth']], function () {
-  Route::controller(AccountController::class)->group(
-    function () {
-      //
-    }
-  );
+  Route::get('/profile', [ProfileController::class, 'index'])
+    ->name('profile');
 });
 
 Route::group(['middleware' => ['auth']], function () {

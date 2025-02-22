@@ -2,8 +2,9 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Managemenu\Menu;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginAccess
@@ -19,7 +20,7 @@ class LoginAccess
     $menu = request()->segment(1); // Ambil segment pertama dari URL
 
     // Cek apakah menu ada di database
-    $queryMenu = DB::table('menus')->where('name', $menu)->first();
+    $queryMenu = Menu::where('name', $menu)->first();
 
     if (!$queryMenu) {
       abort(404, 'Menu tidak ditemukan'); // Tampilkan 404 jika menu tidak ada

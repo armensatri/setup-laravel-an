@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Manageuser;
 
 use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
+use App\Helpers\SubmenuAccess;
 use App\Models\Manageuser\Role;
 use App\Models\Manageuser\User;
 use App\Http\Controllers\Controller;
@@ -14,10 +15,10 @@ use App\Http\Requests\Manageuser\User\UserUr;
 
 class UsersController extends Controller
 {
-  // public function __construct()
-  // {
-  //   SubmenuAccess::check();
-  // }
+  public function __construct()
+  {
+    SubmenuAccess::check();
+  }
 
   /**
    * Display a listing of the resource.

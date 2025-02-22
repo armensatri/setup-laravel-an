@@ -23,8 +23,8 @@
                 <div class="overflow-hidden app-table-border">
                   <div class="grid app-table-grid">
                     <x-description
-                      table-name="access menu"
-                      :page-data="$menus"
+                      table-name="access submenus"
+                      :page-data="$submenus"
                     />
 
                     <div class="indexs">
@@ -45,17 +45,17 @@
                           name="id"
                         />
                         <x-th
-                          name="sm"
+                          name="ssm"
                         />
                         <x-th
-                          name="menu"
+                          name="submenu"
                         />
                         <x-th-action/>
                       </tr>
                     </thead>
 
                     <tbody class="tbody">
-                      @foreach ($menus as $menu)
+                      @foreach ($submenus as $submenu)
                         <tr>
                           <td class="h-px whitespace-nowrap">
                             <div class="my-1 center">
@@ -68,7 +68,7 @@
                           <td class="h-px whitespace-nowrap">
                             <div class="center">
                               <x-td-var
-                                :var="$menu->id"
+                                :var="$submenu->id"
                               />
                             </div>
                           </td>
@@ -76,23 +76,25 @@
                           <td class="h-px whitespace-nowrap">
                             <div class="center">
                               <x-td-var
-                                :var="$menu->sm"
+                                :var="$submenu->ssm"
                               />
                             </div>
                           </td>
 
+
                           <td class="h-px whitespace-nowrap">
                             <x-td-var
-                              :var="$menu->name"
+                              :var="$submenu->name"
                             />
                           </td>
 
                           <td class="size-px whitespace-nowrap">
                             <div class="center">
                               <input type="checkbox"
-                                {{ \App\Helpers\LoginAccess::checkaccess($role['id'], $menu['id']) }}
+                                {{ \App\Helpers\SubmenuAccess::
+                                checkaccesssubmenu($role['id'], $submenu['id']) }}
                                 data-role="{{ $role['id'] }}"
-                                data-menu="{{ $menu['id'] }}"
+                                data-submenu="{{ $submenu['id'] }}"
                                 data-role-name="{{ $role['name'] ?? '' }}"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer access-checkbox"
                               />
@@ -104,9 +106,9 @@
                   </table>
 
                   <div class="grid app-table-footer">
-                    @if ($menus->lastPage() > 1)
+                    @if ($submenus->lastPage() > 1)
                       <x-pagination
-                        :pagination="$menus"
+                        :pagination="$submenus"
                       />
                     @endif
                   </div>
@@ -125,11 +127,11 @@
         checkbox.addEventListener("change", async function () {
           const roleId = this.getAttribute("data-role"); // Ambil role_id
           const roleName = this.getAttribute("data-role-name"); // Ambil role_name
-          const menuId = this.getAttribute("data-menu"); // Ambil menu_id
+          const menuId = this.getAttribute("data-submenu"); // Ambil menu_id
           const isChecked = this.checked ? 1 : 0; // 1 = Insert, 0 = Delete
 
           try {
-            const response = await fetch("{{ route('changeaccess') }}", {
+            const response = await fetch("{{ route('changeaccesssubmenu') }}", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -138,7 +140,7 @@
               },
               body: JSON.stringify({
                 role_id: roleId,
-                menu_id: menuId,
+                submenu_id: menuId,
                 is_checked: isChecked,
               }),
             });
@@ -155,7 +157,7 @@
                 text: result.message,
                 icon: "success",
               }).then(() => {
-                window.location.href = "{{ route('access', [':id', ':name']) }}"
+                window.location.href = "{{ route('accesssubmenu', [':id', ':name']) }}"
                   .replace(":id", roleId)
                   .replace(":name", encodeURIComponent(roleName)); // Ganti kedua parameter
               });

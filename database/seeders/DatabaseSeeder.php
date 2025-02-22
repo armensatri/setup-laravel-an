@@ -16,6 +16,7 @@ use Database\Seeders\Managemenu\{
 
 use Database\Seeders\Pivot\{
   RoleHasMenuSeeder,
+  RoleHasSubmenuSeeder,
 };
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
       MenuSeeder::class,
       SubmenuSeeder::class,
       RoleHasMenuSeeder::class,
+      RoleHasSubmenuSeeder::class,
     ]);
   }
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\Dashboard\{
 use App\Http\Controllers\Backend\Manageuser\{
   UsersController,
   RolesController,
+  PermissionsController,
 };
 
 use App\Http\Controllers\Backend\Managemenu\{
@@ -139,6 +140,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::resources([
     '/users' => UsersController::class,
     '/roles' => RolesController::class,
+    '/permissions' => PermissionsController::class,
     '/menus' => MenusController::class,
     '/submenus' => SubmenusController::class,
   ]);

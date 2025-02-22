@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend\Manageuser;
 
-use App\Helpers\LoginAccess;
 use Illuminate\Http\Request;
 use App\Helpers\SubmenuAccess;
 use App\Models\Manageuser\Role;

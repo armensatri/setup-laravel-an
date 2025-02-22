@@ -117,6 +117,16 @@ class SubmenuSeeder extends Seeder
         'routename' => '/roles',
         'description' => '-'
       ],
+      [
+        'menu_id' => 7,
+        'ssm' => 3,
+        'name' => 'permissions',
+        'slug' => 'permissions',
+        'route' => '/permissions',
+        'active' => 'permissions',
+        'routename' => '/permissions',
+        'description' => '-'
+      ],
 
       [
         'menu_id' => 8,

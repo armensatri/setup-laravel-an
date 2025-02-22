@@ -24,6 +24,7 @@ class RoleHasSubmenuSeeder extends Seeder
 
     $submenu_users = Submenu::where('slug', 'users')->first();
     $submenu_roles = Submenu::where('slug', 'roles')->first();
+    $submenu_permissions = Submenu::where('slug', 'permissions')->first();
 
     $submenu_menus = Submenu::where('slug', 'menus')->first();
     $submenu_submenus = Submenu::where('slug', 'submenus')->first();
@@ -37,6 +38,7 @@ class RoleHasSubmenuSeeder extends Seeder
 
       $submenu_users->id => [],
       $submenu_roles->id => [],
+      $submenu_permissions->id => [],
 
       $submenu_menus->id => [],
       $submenu_submenus->id => [],
@@ -51,6 +53,7 @@ class RoleHasSubmenuSeeder extends Seeder
 
       $submenu_users->id => [],
       $submenu_roles->id => [],
+      $submenu_permissions->id => [],
 
       $submenu_menus->id => [],
       $submenu_submenus->id => [],

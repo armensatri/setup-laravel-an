@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\Manageuser\{
   UserSeeder,
   RoleSeeder,
+  PermissionSeeder,
 };
 
 use Database\Seeders\Managemenu\{
@@ -17,6 +18,7 @@ use Database\Seeders\Managemenu\{
 use Database\Seeders\Pivot\{
   RoleHasMenuSeeder,
   RoleHasSubmenuSeeder,
+  RoleHasPermissionSeeder,
 };
 
 class DatabaseSeeder extends Seeder
@@ -30,6 +32,8 @@ class DatabaseSeeder extends Seeder
       SubmenuSeeder::class,
       RoleHasMenuSeeder::class,
       RoleHasSubmenuSeeder::class,
+      PermissionSeeder::class,
+      RoleHasPermissionSeeder::class,
     ]);
   }
 }

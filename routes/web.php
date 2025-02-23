@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/roles/slug', [RolesController::class, 'slug']);
   Route::get('/menus/slug', [MenusController::class, 'slug']);
   Route::get('/submenus/slug', [SubmenusController::class, 'slug']);
+  Route::get('/permissions/slug', [PermissionsController::class, 'slug']);
 });
 
 /*---------------------------------------------------------------

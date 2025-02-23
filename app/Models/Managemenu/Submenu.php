@@ -5,6 +5,7 @@ namespace App\Models\Managemenu;
 use App\Helpers\RandomUrl;
 use App\Helpers\Searching;
 use App\Models\Managemenu\Menu;
+use App\Models\Manageuser\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -45,13 +46,13 @@ class Submenu extends Model
 
   public function menu()
   {
-    return $this->belongsTo(Menu::class, 'menu_id');
+    return $this->belongsTo(Menu::class);
   }
 
   public function roles()
   {
     return $this->belongsToMany(
-      Menu::class,
+      Role::class,
       'role_has_submenu',
       'submenu_id',
       'role_id',

@@ -23,7 +23,7 @@
                 <div class="overflow-hidden app-table-border">
                   <div class="grid app-table-grid">
                     <x-description
-                      table-name="access submenus"
+                      table-name="access submenu"
                       :page-data="$submenus"
                     />
 

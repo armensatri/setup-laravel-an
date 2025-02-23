@@ -2,8 +2,10 @@
 
 namespace App\Models\Manageuser;
 
-use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\User;
+use App\Models\Managemenu\Menu;
+use App\Models\Managemenu\Submenu;
+use App\Models\Manageuser\Permission;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -55,10 +57,20 @@ class Role extends Model
   public function submenus()
   {
     return $this->belongsToMany(
-      Menu::class,
+      Submenu::class,
       'role_has_submenu',
       'role_id',
       'submenu_id'
+    );
+  }
+
+  public function permissions()
+  {
+    return $this->belongsToMany(
+      Permission::class,
+      'role_has_permission',
+      'role_id',
+      'permission_id'
     );
   }
 

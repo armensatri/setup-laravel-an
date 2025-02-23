@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Helpers\SubmenuAccess;
 use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\Role;
+use App\Models\Managemenu\Submenu;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
-use App\Models\Managemenu\Submenu;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
@@ -171,7 +171,7 @@ class RolesController extends Controller
 
     $menus = Menu::select('id', 'sm', 'name')
       ->orderBy('sm', 'asc')
-      ->paginate(10);
+      ->paginate(25);
 
     return view('backend.manageuser.roles.access', [
       'title' => 'Role access' . ' ' . $role->name,
@@ -214,8 +214,8 @@ class RolesController extends Controller
     $role = Role::findOrFail($id);
 
     $submenus = Submenu::select('id', 'ssm', 'name')
-      ->orderBy('sm', 'asc')
-      ->paginate(10);
+      ->orderBy('menu_id', 'asc')
+      ->paginate(25);
 
     return view('backend.manageuser.roles.accesssubmenu', [
       'title' => 'Role access' . ' ' . $role->name,

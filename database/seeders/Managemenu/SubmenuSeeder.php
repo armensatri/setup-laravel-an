@@ -19,7 +19,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/owner',
         'active' => 'owner',
         'routename' => '/owner',
-        'description' => '-'
+        'description' => 'submenu dashboard owner'
       ],
 
       [
@@ -30,7 +30,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/superadmin',
         'active' => 'superadmin',
         'routename' => '/superadmin',
-        'description' => '-'
+        'description' => 'submenu dashboard super admin'
       ],
 
       [
@@ -41,7 +41,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/admin',
         'active' => 'admin',
         'routename' => '/admin',
-        'description' => '-'
+        'description' => 'submenu dashboard admin'
       ],
 
       [
@@ -52,7 +52,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/member',
         'active' => 'member',
         'routename' => '/member',
-        'description' => '-'
+        'description' => 'submenu dashboard member'
       ],
 
       [
@@ -63,27 +63,27 @@ class SubmenuSeeder extends Seeder
         'route' => '/profile',
         'active' => 'profile',
         'routename' => '/profile',
-        'description' => '-'
+        'description' => 'submenu user profile'
       ],
       [
         'menu_id' => 5,
         'ssm' => 2,
         'name' => 'edit profile',
         'slug' => 'edit-profile',
-        'route' => '-',
-        'active' => '-',
-        'routename' => '-',
-        'description' => '-'
+        'route' => '/edit-profile',
+        'active' => 'edit-profile',
+        'routename' => '/edit-profile',
+        'description' => 'submenu user edit profile'
       ],
       [
         'menu_id' => 5,
         'ssm' => 3,
         'name' => 'change password',
         'slug' => 'change-password',
-        'route' => '-',
-        'active' => '-',
-        'routename' => '-',
-        'description' => '-'
+        'route' => '/change-password',
+        'active' => 'change-password',
+        'routename' => '/change-password',
+        'description' => 'submenu user change password'
       ],
 
       [
@@ -105,7 +105,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/users',
         'active' => 'users',
         'routename' => '/users',
-        'description' => '-'
+        'description' => 'submenu data user'
       ],
       [
         'menu_id' => 7,
@@ -115,7 +115,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/roles',
         'active' => 'roles',
         'routename' => '/roles',
-        'description' => '-'
+        'description' => 'submenu data role'
       ],
       [
         'menu_id' => 7,
@@ -125,7 +125,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/permissions',
         'active' => 'permissions',
         'routename' => '/permissions',
-        'description' => '-'
+        'description' => 'submenu data permission'
       ],
 
       [
@@ -136,7 +136,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/menus',
         'active' => 'menus',
         'routename' => '/menus',
-        'description' => '-'
+        'description' => 'submenu data menu'
       ],
       [
         'menu_id' => 8,
@@ -146,7 +146,7 @@ class SubmenuSeeder extends Seeder
         'route' => '/submenus',
         'active' => 'submenus',
         'routename' => '/submenus',
-        'description' => '-'
+        'description' => 'submenu data submenu'
       ],
     ];
 

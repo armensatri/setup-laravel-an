@@ -129,6 +129,11 @@ Route::group(['middleware' => ['auth']], function () {
     RolesController::class,
     'changeaccesssubmenu'
   ])->name('changeaccesssubmenu');
+
+  Route::get('/roles/accesspermission/{id}/{name}', [
+    RolesController::class,
+    'accesspermission'
+  ])->name('accesspermission');
 });
 
 

@@ -22,6 +22,10 @@ return new class extends Migration
         ->onUpdate('cascade');
       $table->boolean('is_active')->default(1);
       $table->timestamps();
+
+      $table->index('name');
+      $table->index('role_id');
+      $table->index('is_active');
     });
   }
 

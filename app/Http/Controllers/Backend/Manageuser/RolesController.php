@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
+use App\Models\Manageuser\Permission;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
@@ -251,5 +252,20 @@ class RolesController extends Controller
 
     // Kembalikan response JSON ke frontend
     return response()->json(['success' => true, 'message' => $message]);
+  }
+
+  public function accesspermission($id)
+  {
+    $role = Role::findOrFail($id);
+
+    $permissions = Permission::select('id', 'name')
+      ->orderBy('id', 'asc')
+      ->paginate(25);
+
+    return view('backend.manageuser.roles.accesspermission', [
+      'title' => 'Role access' . ' ' . $role->name,
+      'role' => $role,
+      'permissions' => $permissions
+    ]);
   }
 }

@@ -15,12 +15,12 @@ return new class extends Migration
         ->on('roles')
         ->onDelete('cascade')
         ->onUpdate('cascade');
-      // $table->string('role');
-      $table->foreignId('menu_id')
+      $table->foreignId('permission_id')
         ->references('id')
-        ->on('menus')
+        ->on('permissions')
         ->onDelete('cascade')
         ->onUpdate('cascade');
+      $table->index(['role_id', 'permission_id']);
     });
   }
 

@@ -16,6 +16,8 @@ return new class extends Migration
       $table->string('url', 5)->unique();
       $table->text('description');
       $table->timestamps();
+
+      $table->index('sm');
     });
   }
 

@@ -26,6 +26,10 @@ return new class extends Migration
       $table->boolean('is_active')->default(1);
       $table->text('description');
       $table->timestamps();
+
+      $table->index('ssm');
+      $table->index('is_active');
+      $table->index('routename');
     });
   }
 

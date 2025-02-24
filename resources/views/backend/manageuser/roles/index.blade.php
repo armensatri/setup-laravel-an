@@ -155,7 +155,10 @@
                           <td class="h-px whitespace-nowrap">
                             <div class="center">
                               <x-role-access
-                                route=""
+                                :route="route('accesspermission', [
+                                  'id' => $role->id,
+                                  'name' => $role->name
+                                ])"
                               />
                             </div>
                           </td>

@@ -134,6 +134,11 @@ Route::group(['middleware' => ['auth']], function () {
     RolesController::class,
     'accesspermission'
   ])->name('accesspermission');
+
+  Route::post('/roles/changeaccesspermission', [
+    RolesController::class,
+    'changeaccesspermission'
+  ])->name('changeaccesspermission');
 });
 
 

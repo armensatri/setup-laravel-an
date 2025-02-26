@@ -11,90 +11,41 @@
         </div>
       </section>
 
-      @if (session()->has('alert'))
-        @include('sweetalert::alert')
-      @endif
-
       <section class="w-full px-4 mt-8 mb-5">
-        <div class="max-w-[85rem] mx-auto">
-          <div class="flex flex-col">
-            <div class="-m-1.5 overflow-x-auto min-w-full">
-              <div class="p-1.5 inline-block xl:max-w-full align-middle leading-none">
-                <div class="overflow-hidden app-table-border">
-                  <div class="grid app-table-grid">
-                    <x-description
-                      table-name="access permission"
-                      :page-data="$permissions"
-                    />
+        <div class="app-cse-border">
 
-                    <div class="indexs">
-                      <x-indexs
-                        :route="route('roles.index')"
-                        name="back to roles"
-                      />
+          <div class=" rounded-2xl">
+            <div class="grid h-[320px] grid-cols-1 overflow-y-scroll gap-8
+              md:grid-cols-2 lg:grid-cols-3">
+              @foreach ($groupper as $controller => $permissions)
+                <fieldset>
+                  <legend class="mb-2 ml-2 text-sm font-medium tracking-wide text-red-600">
+                    {{ ucfirst($controller) }}Controller
+                  </legend>
+
+                  @foreach ($permissions as $permission)
+                    <div class="flex items-center px-1 ml-1">
+                      <div>
+                        <div class="flex items-center">
+                          <input type="checkbox"
+                            {{ \App\Helpers\PermissionAccess::
+                            checkaccesspermission($role->id, $permission->id) }}
+                            data-role="{{ $role->id }}"
+                            data-permission="{{ $permission->id }}"
+                            data-role-name="{{ $role->name ?? '' }}"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer access-checkbox"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="font-normal
+                        text-gray-600 text-[15px] whitespace-nowrap p-2 py-1.5 tracking-wide">
+                        {{ $permission->id }} - {{ $permission->name }}
+                      </div>
                     </div>
-                  </div>
-
-                  <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-200">
-                      <tr>
-                        <x-th
-                          name="no"
-                        />
-                        <x-th
-                          name="id"
-                        />
-                        <x-th
-                          name="name"
-                        />
-                        <x-th-action/>
-                      </tr>
-                    </thead>
-
-                    <tbody class="tbody">
-                      @foreach ($permissions as $permission)
-                        <tr>
-                          <td class="h-px whitespace-nowrap">
-                            <div class="py-1">
-                              <x-td-var
-                                :var="$loop->iteration . '.'"
-                              />
-                            </div>
-                          </td>
-
-                          <td class="h-px whitespace-nowrap">
-                            <x-td-var
-                              :var="$permission->id"
-                            />
-                          </td>
-
-                          <td class="h-px whitespace-nowrap">
-                            <x-td-var
-                              :var="$permission->name"
-                            />
-                          </td>
-
-                          <td class="size-px whitespace-nowrap">
-                            <div class="center">
-                              <input type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer access-checkbox"
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-
-                  <div class="grid app-table-footer">
-                    @if ($permissions->lastPage() > 1)
-                      <x-pagination
-                        :pagination="$permissions"
-                      />
-                    @endif
-                  </div>
-                </div>
-              </div>
+                  @endforeach
+                </fieldset>
+              @endforeach
             </div>
           </div>
         </div>
@@ -108,11 +59,11 @@
         checkbox.addEventListener("change", async function () {
           const roleId = this.getAttribute("data-role"); // Ambil role_id
           const roleName = this.getAttribute("data-role-name"); // Ambil role_name
-          const menuId = this.getAttribute("data-submenu"); // Ambil menu_id
+          const menuId = this.getAttribute("data-permission"); // Ambil menu_id
           const isChecked = this.checked ? 1 : 0; // 1 = Insert, 0 = Delete
 
           try {
-            const response = await fetch("{{ route('changeaccesssubmenu') }}", {
+            const response = await fetch("{{ route('changeaccesspermission') }}", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -121,7 +72,7 @@
               },
               body: JSON.stringify({
                 role_id: roleId,
-                submenu_id: menuId,
+                permission_id: permissionId,
                 is_checked: isChecked,
               }),
             });
@@ -138,7 +89,7 @@
                 text: result.message,
                 icon: "success",
               }).then(() => {
-                window.location.href = "{{ route('accesssubmenu', [':id', ':name']) }}"
+                window.location.href = "{{ route('accesspermission', [':id', ':name']) }}"
                   .replace(":id", roleId)
                   .replace(":name", encodeURIComponent(roleName)); // Ganti kedua parameter
               });

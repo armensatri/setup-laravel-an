@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Helpers\SubmenuAccess;
 use App\Models\Managemenu\Menu;
 use App\Models\Manageuser\Role;
+use App\Helpers\PermissionAccess;
 use App\Models\Managemenu\Submenu;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Manageuser\Permission;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Manageuser\Role\RoleSr;
 use App\Http\Requests\Manageuser\Role\RoleUr;
-use App\Models\Manageuser\Permission;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class RolesController extends Controller
@@ -259,13 +260,49 @@ class RolesController extends Controller
     $role = Role::findOrFail($id);
 
     $permissions = Permission::select('id', 'name')
-      ->orderBy('id', 'asc')
-      ->paginate(25);
+      ->orderby('id', 'asc')
+      ->get();
+
+    $groupper = $permissions->sortBy('id')->groupBy(
+      function ($permission) {
+        $controller = explode('.', $permission->name)[0];
+        return ucfirst($controller);
+      }
+    );
 
     return view('backend.manageuser.roles.accesspermission', [
       'title' => 'Role access' . ' ' . $role->name,
       'role' => $role,
-      'permissions' => $permissions
+      'groupper' => $groupper
     ]);
+  }
+
+  public function changeaccesspermission(Request $request)
+  {
+    // Ambil data yang dikirimkan dari AJAX
+    $roleId = $request->role_id;  // Ambil role_id dari request
+    $permissionId = $request->permission_id;  // Ambil menu_id dari request
+
+    // Buat array data untuk digunakan dalam query
+    $data = [
+      'role_id' => $roleId,
+      'permission_id' => $permissionId
+    ];
+
+    // Cek apakah data role_id dan menu_id sudah ada di tabel role_has_menu
+    $exists = DB::table('role_has_permission')->where($data)->exists();
+
+    if ($exists) {
+      // Jika ada, hapus akses (uncheck)
+      DB::table('role_has_permission')->where($data)->delete();
+      $message = 'Akses berhasil dihapus!';
+    } else {
+      // Jika tidak ada, tambahkan akses (check)
+      DB::table('role_has_permission')->insert($data);
+      $message = 'Akses berhasil ditambahkan!';
+    }
+
+    // Kembalikan response JSON ke frontend
+    return response()->json(['success' => true, 'message' => $message]);
   }
 }

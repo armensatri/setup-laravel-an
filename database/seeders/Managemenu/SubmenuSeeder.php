@@ -89,6 +89,37 @@ class SubmenuSeeder extends Seeder
       [
         'menu_id' => 6,
         'ssm' => 1,
+        'name' => 'ma menu',
+        'slug' => 'ma-menu',
+        'route' => '/ma-menu',
+        'active' => 'ma-menu',
+        'routename' => '/ma-menu',
+        'description' => 'manage access menu'
+      ],
+      [
+        'menu_id' => 6,
+        'ssm' => 2,
+        'name' => 'ma submenu',
+        'slug' => 'ma-submenu',
+        'route' => '/ma-submenu',
+        'active' => 'ma-submenu',
+        'routename' => '/ma-submenu',
+        'description' => 'manage access submenu'
+      ],
+      [
+        'menu_id' => 6,
+        'ssm' => 3,
+        'name' => 'ma permission',
+        'slug' => 'ma-permission',
+        'route' => '/ma-permission',
+        'active' => 'ma-permission',
+        'routename' => '/ma-permission',
+        'description' => 'manage access permission'
+      ],
+
+      [
+        'menu_id' => 7,
+        'ssm' => 1,
         'name' => 'data',
         'slug' => 'data',
         'route' => '-',
@@ -98,7 +129,7 @@ class SubmenuSeeder extends Seeder
       ],
 
       [
-        'menu_id' => 7,
+        'menu_id' => 8,
         'ssm' => 1,
         'name' => 'users',
         'slug' => 'users',
@@ -108,7 +139,7 @@ class SubmenuSeeder extends Seeder
         'description' => 'submenu data user'
       ],
       [
-        'menu_id' => 7,
+        'menu_id' => 8,
         'ssm' => 2,
         'name' => 'roles',
         'slug' => 'roles',
@@ -118,7 +149,7 @@ class SubmenuSeeder extends Seeder
         'description' => 'submenu data role'
       ],
       [
-        'menu_id' => 7,
+        'menu_id' => 8,
         'ssm' => 3,
         'name' => 'permissions',
         'slug' => 'permissions',
@@ -129,7 +160,7 @@ class SubmenuSeeder extends Seeder
       ],
 
       [
-        'menu_id' => 8,
+        'menu_id' => 9,
         'ssm' => 1,
         'name' => 'menus',
         'slug' => 'menus',
@@ -139,7 +170,7 @@ class SubmenuSeeder extends Seeder
         'description' => 'submenu data menu'
       ],
       [
-        'menu_id' => 8,
+        'menu_id' => 9,
         'ssm' => 2,
         'name' => 'submenus',
         'slug' => 'submenus',

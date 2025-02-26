@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Manageuser;
 use App\Helpers\RandomUrl;
 use Illuminate\Http\Request;
 use App\Helpers\SubmenuAccess;
+use App\Helpers\PermissionAccess;
 use App\Http\Controllers\Controller;
 use App\Models\Manageuser\Permission;
 use RealRashid\SweetAlert\Facades\Alert;

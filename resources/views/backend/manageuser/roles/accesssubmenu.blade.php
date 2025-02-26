@@ -92,10 +92,10 @@
                             <div class="center">
                               <input type="checkbox"
                                 {{ \App\Helpers\SubmenuAccess::
-                                checkaccesssubmenu($role['id'], $submenu['id']) }}
-                                data-role="{{ $role['id'] }}"
-                                data-submenu="{{ $submenu['id'] }}"
-                                data-role-name="{{ $role['name'] ?? '' }}"
+                                checkaccesssubmenu($role->id, $submenu->id) }}
+                                data-role="{{ $role->id }}"
+                                data-submenu="{{ $submenu->id }}"
+                                data-role-name="{{ $role->name ?? '' }}"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer access-checkbox"
                               />
                             </div>

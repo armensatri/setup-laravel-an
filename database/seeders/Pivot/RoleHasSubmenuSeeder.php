@@ -17,8 +17,24 @@ class RoleHasSubmenuSeeder extends Seeder
     $member = Role::where('name', 'member')->first();
 
     $submenu_profile = Submenu::where('slug', 'profile')->first();
-    $submenu_edit_profile = Submenu::where('slug', 'edit-profile')->first();
-    $submenu_change_password = Submenu::where('slug', 'change-password')->first();
+    $submenu_edit_profile = Submenu::where(
+      'slug',
+      'edit-profile'
+    )->first();
+    $submenu_change_password = Submenu::where(
+      'slug',
+      'change-password'
+    )->first();
+
+    $submenu_ma_menu = Submenu::where('slug', 'ma-menu')->first();
+    $submenu_ma_submenu = Submenu::where(
+      'slug',
+      'ma-submenu'
+    )->first();
+    $submenu_ma_permission = Submenu::where(
+      'slug',
+      'ma-permission'
+    )->first();
 
     $submenu_data = Submenu::where('slug', 'data')->first();
 
@@ -34,6 +50,10 @@ class RoleHasSubmenuSeeder extends Seeder
       $submenu_edit_profile->id => [],
       $submenu_change_password->id => [],
 
+      $submenu_ma_menu->id => [],
+      $submenu_ma_submenu->id => [],
+      $submenu_ma_permission->id => [],
+
       $submenu_data->id => [],
 
       $submenu_users->id => [],
@@ -48,6 +68,10 @@ class RoleHasSubmenuSeeder extends Seeder
       $submenu_profile->id => [],
       $submenu_edit_profile->id => [],
       $submenu_change_password->id => [],
+
+      $submenu_ma_menu->id => [],
+      $submenu_ma_submenu->id => [],
+      $submenu_ma_permission->id => [],
 
       $submenu_data->id => [],
 

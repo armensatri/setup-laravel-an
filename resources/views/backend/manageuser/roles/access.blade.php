@@ -90,10 +90,10 @@
                           <td class="size-px whitespace-nowrap">
                             <div class="center">
                               <input type="checkbox"
-                                {{ \App\Helpers\LoginAccess::checkaccess($role['id'], $menu['id']) }}
-                                data-role="{{ $role['id'] }}"
-                                data-menu="{{ $menu['id'] }}"
-                                data-role-name="{{ $role['name'] ?? '' }}"
+                                {{ \App\Helpers\LoginAccess::checkaccess($role->id, $menu->id) }}
+                                data-role="{{ $role->id }}"
+                                data-menu="{{ $menu->id }}"
+                                data-role-name="{{ $role->name ?? '' }}"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-md cursor-pointer access-checkbox"
                               />
                             </div>

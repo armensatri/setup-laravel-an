@@ -74,6 +74,13 @@ class Role extends Model
     );
   }
 
+  public function hasPermission($permissions)
+  {
+    return $this->permissions()
+      ->whereIn('name', (array) $permissions)
+      ->exists();
+  }
+
   public function scopeSearch(Builder $query, array $filters): void
   {
     $fields = ['name'];

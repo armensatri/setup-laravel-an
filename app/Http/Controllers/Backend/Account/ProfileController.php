@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Account;
 
-use App\Helpers\PermissionAccess;
 use Illuminate\Http\Request;
 use App\Helpers\SubmenuAccess;
+use App\Helpers\PermissionAccess;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,11 @@ class ProfileController extends Controller
 
   public function index()
   {
+    $user = Auth::user();
+
     return view('backend.account.profile.index', [
-      'title' => 'Profile'
+      'title' => 'Profile',
+      'user' => $user
     ]);
   }
 }

@@ -76,6 +76,9 @@
                           name="ssm"
                         />
                         <x-th
+                          name="image"
+                        />
+                        <x-th
                           name="name"
                         />
                         <x-th
@@ -129,6 +132,15 @@
                             <div class="center">
                               <x-td-var
                                 :var="$submenu->ssm"
+                              />
+                            </div>
+                          </td>
+
+                          <td class="size-px whitespace-nowrap">
+                            <div class="center">
+                              <x-td-image
+                                :asset="$submenu->image"
+                                asset-default="/imaga/default.png"
                               />
                             </div>
                           </td>

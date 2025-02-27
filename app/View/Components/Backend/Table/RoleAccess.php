@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Backend\table;
+namespace App\View\Components\Backend\Table;
 
 use Closure;
 use Illuminate\Contracts\View\View;

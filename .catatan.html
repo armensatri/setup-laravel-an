@@ -217,5 +217,14 @@
   </script>
 @endSection
 
+permission blade
+@if(auth()->user()->can('post.create'))
+    <a href="{{ route('post.create') }}" class="btn btn-success">Create Post</a>
+@endif
+
+@if(auth()->user()->can('post.edit'))
+    <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+@endif
+
 
 -->

@@ -30,6 +30,7 @@ use App\Http\Controllers\Backend\Managemenu\{
 
 use App\Http\Controllers\Backend\Account\{
   ProfileController,
+  EditprofileController,
 };
 
 
@@ -145,6 +146,11 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', [ProfileController::class, 'index'])
     ->name('profile');
+
+  Route::get('/edit-profile', [EditprofileController::class, 'index'])
+    ->name('edit-profile');
+  Route::patch('/edit-profile', [EditprofileController::class, 'update'])
+    ->name('edit-profile.update');
 });
 
 Route::group(['middleware' => ['auth']], function () {

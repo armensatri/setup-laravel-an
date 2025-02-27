@@ -11,13 +11,40 @@ class RoleHasPermissionSeeder extends Seeder
 {
   public function run(): void
   {
-    $owner = Role::where('name', 'owner')->first();
+    $roles = [
+      'owner',
+      'superadmin',
+      'admin',
+      'member'
+    ];
 
-    $permission_users_index = Permission::where('name', 'users.index')
-      ->first();
+    // Buat Role jika belum ada
+    foreach ($roles as $roleName) {
+      Role::firstOrCreate(['name' => $roleName]);
+    }
 
-    if ($owner && $permission_users_index) {
-      $owner->permissions()->attach($permission_users_index->id);
+    // Definisi permission berdasarkan role
+    $rolePermissions = [
+      'owner' => [],
+
+      'superadmin' => [],
+
+      'admin' => [],
+
+      'member' => [],
+    ];
+
+    // Assign permission ke masing-masing role
+    foreach ($rolePermissions as $roleName => $permissions) {
+      $role = Role::where('name', $roleName)->first();
+
+      if ($role) {
+        // Ambil semua permission berdasarkan nama
+        $permissionIds = Permission::whereIn('name', $permissions)->pluck('id');
+
+        // Assign permission ke role
+        $role->permissions()->sync($permissionIds);
+      }
     }
   }
 }

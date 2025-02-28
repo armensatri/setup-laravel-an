@@ -17,7 +17,8 @@ class Permission extends Model
   protected $fillable = [
     'name',
     'slug',
-    'url'
+    'url',
+    'guard_name'
   ];
 
   public function getRouteKeyName()

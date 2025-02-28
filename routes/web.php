@@ -29,10 +29,16 @@ use App\Http\Controllers\Backend\Managemenu\{
 };
 
 use App\Http\Controllers\Backend\Account\{
+  ChangepasswordController,
   ProfileController,
   EditprofileController,
 };
 
+use App\Http\Controllers\Backend\Manageaccess\{
+  ManageaccessmenuController,
+  ManageaccesspermissionController,
+  ManageaccesssubmenuController
+};
 
 /*---------------------------------------------------------------
 | ROUTE AUTH
@@ -110,7 +116,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/blocked', [BlockedController::class, 'index'])
   ->name('blocked');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'permission']], function () {
   Route::get('/roles/access/{id}/{name}', [
     RolesController::class,
     'access'
@@ -143,17 +149,29 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'permission']], function () {
   Route::get('/profile', [ProfileController::class, 'index'])
     ->name('profile');
 
   Route::get('/edit-profile', [EditprofileController::class, 'index'])
     ->name('edit-profile');
-  Route::patch('/edit-profile', [EditprofileController::class, 'update'])
+  Route::post('/edit-profile/edit', [EditprofileController::class, 'update'])
     ->name('edit-profile.update');
+
+  Route::get('/change-password', [ChangepasswordController::class, 'index'])->name('change-password');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'permission']], function () {
+  Route::get('/ma-menu', [ManageaccessmenuController::class, 'index'])
+    ->name('ma-menu');
+  Route::get('/ma-submenu', [ManageaccesssubmenuController::class, 'index'])
+    ->name('ma-submenu');
+  Route::get('/ma-permission', [ManageaccesspermissionController::class, 'index'])
+    ->name('ma-permission');
+});
+
+
+Route::group(['middleware' => ['auth', 'permission']], function () {
   Route::resources([
     '/users' => UsersController::class,
     '/roles' => RolesController::class,

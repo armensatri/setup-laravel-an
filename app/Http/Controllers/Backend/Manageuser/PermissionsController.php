@@ -28,6 +28,7 @@ class PermissionsController extends Controller
     $permissions = Permission::search(request(['search']))
       ->select(['id', 'name', 'slug', 'url'])
       ->orderby('id', 'asc')
+      ->with(['roles'])
       ->paginate(10)
       ->withQueryString();
 

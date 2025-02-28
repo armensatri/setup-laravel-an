@@ -30,7 +30,7 @@ class RolesController extends Controller
   {
     $roles = Role::search(request(['search']))
       ->select(['id', 'sr', 'name', 'bg', 'text', 'description', 'slug'])
-      ->with(['menus'])
+      ->with(['menus', 'permissions'])
       ->orderby('sr', 'asc')
       ->paginate(10)
       ->withQueryString();

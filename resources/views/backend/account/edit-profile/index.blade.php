@@ -13,10 +13,9 @@
 
       <section class="w-full px-4 mt-8 mb-5">
         <div class="w-full">
-          <form action="{{ route('edit-profile', $user->username) }}"
+          <form action="{{ route('edit-profile.update', $user->username) }}"
             method="POST"
             enctype="multipart/form-data">
-            @method('PATCH')
             @csrf
 
             <div class="app-cse-border">

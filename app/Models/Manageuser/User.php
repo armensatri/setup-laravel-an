@@ -49,6 +49,12 @@ class User extends Authenticatable
       : ['bg' => 'red-200', 'text' => 'red-800', 'active' => '!active'];
   }
 
+  public function hasPermission($permission)
+  {
+    return $this->role?->permissions->contains('name', $permission);
+  }
+
+
   public function scopeSearch(Builder $query, array $filters): void
   {
     $fields = ['name'];
